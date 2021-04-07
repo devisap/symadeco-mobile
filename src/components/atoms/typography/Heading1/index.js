@@ -8,9 +8,9 @@ const Heading1 = (props) => {
         if(props.color){
             setTextColor(props.color)
         }
-    }, [])
+    })
     return (
-        <Text style={{fontFamily: "Causten-Bold", color: textColor, fontSize: 32}}>{props.text? props.text : 'Heading1'}</Text>
+        <Text style={{fontFamily: "Causten-Bold", color: textColor, fontSize: 28}}>{props.text? props.text : 'Heading1'}</Text>
     )
 }
 

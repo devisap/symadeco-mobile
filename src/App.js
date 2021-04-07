@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -27,17 +26,21 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import Heading1 from './components/atoms/typography/Heading1'
 import Heading2 from './components/atoms/typography/Heading2'
+import Heading3 from './components/atoms/typography/Heading3'
 import Paragraph from './components/atoms/typography/Paragraph'
 import ButtonPrimary from './components/atoms/buttons/ButtonPrimary'
-const App: () => Node = () => {
+import SplashScreen from './components/pages/SplashScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import Router from './config/router';
+import LoginLayout from './components/templates/LoginLayout';
+import DashboardLayout from './components/templates/DashboardLayout';
+const App = () => {
 
   return (
-    <View style={{flex: 1, backgroundColor: "#fff"}}>
-      <Heading1 />
-      <Heading2 />
-      <Paragraph />
-      <ButtonPrimary />
-    </View>
+    // <NavigationContainer>
+    //   <Router />
+    // </NavigationContainer>
+    <DashboardLayout />
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Text } from 'react-native'
 
-const Heading2 = (props) => {
+const Heading3 = (props) => {
     const [textColor, setTextColor] = useState('#333')
 
     useEffect(() => {
@@ -9,10 +9,9 @@ const Heading2 = (props) => {
             setTextColor(props.color)
         }
     })
-
     return (
-        <Text style={{fontFamily: "Causten-Bold", color: textColor, fontSize: 24}}>{props.text? props.text : 'Heading2'}</Text>
+        <Text style={{fontFamily: "Causten-Bold", color: textColor, fontSize: 20}}>{props.text? props.text : 'Heading3'}</Text>
     )
 }
 
-export default Heading2
+export default Heading3
