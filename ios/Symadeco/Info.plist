@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,5 +51,26 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Causten-Black.otf</string>
+		<string>Causten-BlackOblique.otf</string>
+		<string>Causten-Bold.otf</string>
+		<string>Causten-BoldOblique.otf</string>
+		<string>Causten-ExtraBold.otf</string>
+		<string>Causten-ExtraBoldOblique.otf</string>
+		<string>Causten-ExtraLight.otf</string>
+		<string>Causten-ExtraLightOblique.otf</string>
+		<string>Causten-Light.otf</string>
+		<string>Causten-LightOblique.otf</string>
+		<string>Causten-Medium.otf</string>
+		<string>Causten-MediumOblique.otf</string>
+		<string>Causten-Regular.otf</string>
+		<string>Causten-RegularOblique.otf</string>
+		<string>Causten-SemiBold.otf</string>
+		<string>Causten-SemiBoldOblique.otf</string>
+		<string>Causten-Thin.otf</string>
+		<string>Causten-ThinOblique.otf</string>
+	</array>
 </dict>
 </plist>

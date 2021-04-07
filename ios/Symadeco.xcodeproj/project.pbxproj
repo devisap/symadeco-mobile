@@ -12,6 +12,24 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		AE89F1CADC7F4DF5BB7C8F32 /* Causten-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB7D71BB2FFB4286B1C4CCBB /* Causten-Black.otf */; };
+		93374652888E42EDB24E7FA1 /* Causten-BlackOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = A8D273A2B5634CA8B80C8E33 /* Causten-BlackOblique.otf */; };
+		96ADDF0F989D44F0ADEE872B /* Causten-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE721CF76E794349B56377CD /* Causten-Bold.otf */; };
+		F82AF79B17444F9A83D6A9E2 /* Causten-BoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3424A0CD6BED459D85D07950 /* Causten-BoldOblique.otf */; };
+		A217B9E3E6474313B9AE1314 /* Causten-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BA17522C52334BF3BE6343AB /* Causten-ExtraBold.otf */; };
+		3CD0B484CABB4095ABAAE11A /* Causten-ExtraBoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC2275BB8E404BA398A9F1E2 /* Causten-ExtraBoldOblique.otf */; };
+		2B91C5EF058C4DEF9C07E8EE /* Causten-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BA1D4DB8D2524B06B1214DA8 /* Causten-ExtraLight.otf */; };
+		409B237E58AC403885F6A3B5 /* Causten-ExtraLightOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7EC531F370CD4C4996FEE01B /* Causten-ExtraLightOblique.otf */; };
+		393BE548AA124FB0A5AF96B6 /* Causten-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5C1BA4ACA9924FBAB50BBEAA /* Causten-Light.otf */; };
+		7B1168821D994052BFF7999A /* Causten-LightOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = CD659DD5126641AB972DCB73 /* Causten-LightOblique.otf */; };
+		576AFAB829574088A1C6F877 /* Causten-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC3BAC7B586940D1A6DE29ED /* Causten-Medium.otf */; };
+		20460576ACFC4E19837946AE /* Causten-MediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1B930CBD6C9D445294AE2B9D /* Causten-MediumOblique.otf */; };
+		E5B487077B604079B170E720 /* Causten-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AD472BC089F9465C8B29E633 /* Causten-Regular.otf */; };
+		7C2D552A9F614603B3D291AE /* Causten-RegularOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0909B67050A24881A4F3ED14 /* Causten-RegularOblique.otf */; };
+		B1F67AB8448A49B58E6EF8BD /* Causten-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = C817DE29900C47EB91654285 /* Causten-SemiBold.otf */; };
+		E7E1DCDC12FB41288DFA7D5E /* Causten-SemiBoldOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE2FE3C79ACD469BB5A979CC /* Causten-SemiBoldOblique.otf */; };
+		76E0E0E65CFE450EA07240F7 /* Causten-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = F59D163C04B441F4B1957CC8 /* Causten-Thin.otf */; };
+		5DDA4DB1BF594C538623BFEB /* Causten-ThinOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 393F74694F574E98B6A91E7D /* Causten-ThinOblique.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +54,24 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Symadeco/main.m; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Symadeco/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		BB7D71BB2FFB4286B1C4CCBB /* Causten-Black.otf */ = {isa = PBXFileReference; name = "Causten-Black.otf"; path = "../src/assets/fonts/Causten-Black.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A8D273A2B5634CA8B80C8E33 /* Causten-BlackOblique.otf */ = {isa = PBXFileReference; name = "Causten-BlackOblique.otf"; path = "../src/assets/fonts/Causten-BlackOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AE721CF76E794349B56377CD /* Causten-Bold.otf */ = {isa = PBXFileReference; name = "Causten-Bold.otf"; path = "../src/assets/fonts/Causten-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3424A0CD6BED459D85D07950 /* Causten-BoldOblique.otf */ = {isa = PBXFileReference; name = "Causten-BoldOblique.otf"; path = "../src/assets/fonts/Causten-BoldOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BA17522C52334BF3BE6343AB /* Causten-ExtraBold.otf */ = {isa = PBXFileReference; name = "Causten-ExtraBold.otf"; path = "../src/assets/fonts/Causten-ExtraBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CC2275BB8E404BA398A9F1E2 /* Causten-ExtraBoldOblique.otf */ = {isa = PBXFileReference; name = "Causten-ExtraBoldOblique.otf"; path = "../src/assets/fonts/Causten-ExtraBoldOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BA1D4DB8D2524B06B1214DA8 /* Causten-ExtraLight.otf */ = {isa = PBXFileReference; name = "Causten-ExtraLight.otf"; path = "../src/assets/fonts/Causten-ExtraLight.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7EC531F370CD4C4996FEE01B /* Causten-ExtraLightOblique.otf */ = {isa = PBXFileReference; name = "Causten-ExtraLightOblique.otf"; path = "../src/assets/fonts/Causten-ExtraLightOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5C1BA4ACA9924FBAB50BBEAA /* Causten-Light.otf */ = {isa = PBXFileReference; name = "Causten-Light.otf"; path = "../src/assets/fonts/Causten-Light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CD659DD5126641AB972DCB73 /* Causten-LightOblique.otf */ = {isa = PBXFileReference; name = "Causten-LightOblique.otf"; path = "../src/assets/fonts/Causten-LightOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AC3BAC7B586940D1A6DE29ED /* Causten-Medium.otf */ = {isa = PBXFileReference; name = "Causten-Medium.otf"; path = "../src/assets/fonts/Causten-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1B930CBD6C9D445294AE2B9D /* Causten-MediumOblique.otf */ = {isa = PBXFileReference; name = "Causten-MediumOblique.otf"; path = "../src/assets/fonts/Causten-MediumOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AD472BC089F9465C8B29E633 /* Causten-Regular.otf */ = {isa = PBXFileReference; name = "Causten-Regular.otf"; path = "../src/assets/fonts/Causten-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0909B67050A24881A4F3ED14 /* Causten-RegularOblique.otf */ = {isa = PBXFileReference; name = "Causten-RegularOblique.otf"; path = "../src/assets/fonts/Causten-RegularOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C817DE29900C47EB91654285 /* Causten-SemiBold.otf */ = {isa = PBXFileReference; name = "Causten-SemiBold.otf"; path = "../src/assets/fonts/Causten-SemiBold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AE2FE3C79ACD469BB5A979CC /* Causten-SemiBoldOblique.otf */ = {isa = PBXFileReference; name = "Causten-SemiBoldOblique.otf"; path = "../src/assets/fonts/Causten-SemiBoldOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F59D163C04B441F4B1957CC8 /* Causten-Thin.otf */ = {isa = PBXFileReference; name = "Causten-Thin.otf"; path = "../src/assets/fonts/Causten-Thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		393F74694F574E98B6A91E7D /* Causten-ThinOblique.otf */ = {isa = PBXFileReference; name = "Causten-ThinOblique.otf"; path = "../src/assets/fonts/Causten-ThinOblique.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +145,7 @@
 				00E356EF1AD99517003FC87E /* SymadecoTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				B8215FB8D4DC4E8592C49561 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -123,6 +160,32 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		B8215FB8D4DC4E8592C49561 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				BB7D71BB2FFB4286B1C4CCBB /* Causten-Black.otf */,
+				A8D273A2B5634CA8B80C8E33 /* Causten-BlackOblique.otf */,
+				AE721CF76E794349B56377CD /* Causten-Bold.otf */,
+				3424A0CD6BED459D85D07950 /* Causten-BoldOblique.otf */,
+				BA17522C52334BF3BE6343AB /* Causten-ExtraBold.otf */,
+				CC2275BB8E404BA398A9F1E2 /* Causten-ExtraBoldOblique.otf */,
+				BA1D4DB8D2524B06B1214DA8 /* Causten-ExtraLight.otf */,
+				7EC531F370CD4C4996FEE01B /* Causten-ExtraLightOblique.otf */,
+				5C1BA4ACA9924FBAB50BBEAA /* Causten-Light.otf */,
+				CD659DD5126641AB972DCB73 /* Causten-LightOblique.otf */,
+				AC3BAC7B586940D1A6DE29ED /* Causten-Medium.otf */,
+				1B930CBD6C9D445294AE2B9D /* Causten-MediumOblique.otf */,
+				AD472BC089F9465C8B29E633 /* Causten-Regular.otf */,
+				0909B67050A24881A4F3ED14 /* Causten-RegularOblique.otf */,
+				C817DE29900C47EB91654285 /* Causten-SemiBold.otf */,
+				AE2FE3C79ACD469BB5A979CC /* Causten-SemiBoldOblique.otf */,
+				F59D163C04B441F4B1957CC8 /* Causten-Thin.otf */,
+				393F74694F574E98B6A91E7D /* Causten-ThinOblique.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -214,6 +277,24 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				AE89F1CADC7F4DF5BB7C8F32 /* Causten-Black.otf in Resources */,
+				93374652888E42EDB24E7FA1 /* Causten-BlackOblique.otf in Resources */,
+				96ADDF0F989D44F0ADEE872B /* Causten-Bold.otf in Resources */,
+				F82AF79B17444F9A83D6A9E2 /* Causten-BoldOblique.otf in Resources */,
+				A217B9E3E6474313B9AE1314 /* Causten-ExtraBold.otf in Resources */,
+				3CD0B484CABB4095ABAAE11A /* Causten-ExtraBoldOblique.otf in Resources */,
+				2B91C5EF058C4DEF9C07E8EE /* Causten-ExtraLight.otf in Resources */,
+				409B237E58AC403885F6A3B5 /* Causten-ExtraLightOblique.otf in Resources */,
+				393BE548AA124FB0A5AF96B6 /* Causten-Light.otf in Resources */,
+				7B1168821D994052BFF7999A /* Causten-LightOblique.otf in Resources */,
+				576AFAB829574088A1C6F877 /* Causten-Medium.otf in Resources */,
+				20460576ACFC4E19837946AE /* Causten-MediumOblique.otf in Resources */,
+				E5B487077B604079B170E720 /* Causten-Regular.otf in Resources */,
+				7C2D552A9F614603B3D291AE /* Causten-RegularOblique.otf in Resources */,
+				B1F67AB8448A49B58E6EF8BD /* Causten-SemiBold.otf in Resources */,
+				E7E1DCDC12FB41288DFA7D5E /* Causten-SemiBoldOblique.otf in Resources */,
+				76E0E0E65CFE450EA07240F7 /* Causten-Thin.otf in Resources */,
+				5DDA4DB1BF594C538623BFEB /* Causten-ThinOblique.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
