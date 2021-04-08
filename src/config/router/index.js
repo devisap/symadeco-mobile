@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack'
 import {
     SplashScreen, Login
 } from '../../components/pages'
+import Drawer from './navigation/Drawer'
 
 const Stack = createStackNavigator()
 
@@ -15,6 +16,11 @@ const Router = () => {
                 }}
             />
             <Stack.Screen name={"Login"} component={Login}
+                options={{
+                    headerShown: false
+                }}
+            />
+            <Stack.Screen name="Home" component={Drawer}
                 options={{
                     headerShown: false
                 }}

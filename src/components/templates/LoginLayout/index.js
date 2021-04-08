@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import Logo from '../../../assets/images/Logo.svg'
 import BasicField from '../../atoms/forms/BasicField'
 
-const LoginLayout = () => {
+const LoginLayout = (props) => {
 
     return (
         <View style={{flex: 1, backgroundColor: "#fff"}}>
@@ -23,7 +23,7 @@ const LoginLayout = () => {
                     </View>
                 </View>
                 <View style={{marginTop: 70, paddingHorizontal: 40}}>
-                    <TouchableOpacity activeOpacity={0.8}>
+                    <TouchableOpacity activeOpacity={0.8} onPress={() => props.navigation.replace('Home')}>
                         <LinearGradient colors={['#AF65FF', '#9F4BFE']} start={{x: 0.3, y: 0.5}} end={{x: 0.9, y: 0.5}} style={{alignItems: 'center', borderRadius: 10}}>
                             <Text style={{marginVertical: 14, fontFamily: "Causten-Bold", color: '#fff', fontSize: 20}}>Login</Text>
                         </LinearGradient>

@@ -37,10 +37,10 @@ import DashboardLayout from './components/templates/DashboardLayout';
 const App = () => {
 
   return (
-    // <NavigationContainer>
-    //   <Router />
-    // </NavigationContainer>
-    <DashboardLayout />
+    <NavigationContainer>
+      <Router />
+    </NavigationContainer>
+    // <DashboardLayout />
   );
 };
 
