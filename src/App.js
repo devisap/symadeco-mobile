@@ -34,13 +34,16 @@ import { NavigationContainer } from '@react-navigation/native';
 import Router from './config/router';
 import LoginLayout from './components/templates/LoginLayout';
 import DashboardLayout from './components/templates/DashboardLayout';
+import DaftarKlienLayout from './components/templates/DaftarKlienLayout';
+import SelectFilterField from './components/atoms/forms/SelectFilterField';
 const App = () => {
 
   return (
-    <NavigationContainer>
-      <Router />
-    </NavigationContainer>
-    // <DashboardLayout />
+    // <NavigationContainer>
+    //   <Router />
+    // </NavigationContainer>
+    <DaftarKlienLayout />
+    // <SelectFilterField />
   );
 };
 

@@ -17,6 +17,10 @@ const DashboardStack = ({navigation}) => {
                     headerStyle: {
                         backgroundColor: "#fff"
                     },
+                    headerTitleStyle: {
+                        fontFamily: 'Causten-Bold',
+                        fontSize: 24
+                    },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
                     ),
@@ -42,6 +46,11 @@ const DaftarKlienStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -60,6 +69,11 @@ const AlurKeuanganStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -78,6 +92,11 @@ const LaporanStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -95,6 +114,11 @@ const DaftarPemesananStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -113,6 +137,11 @@ const SKKStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -131,6 +160,11 @@ const NotaPembayaranStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -149,6 +183,11 @@ const NotaPengirimanStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -167,6 +206,11 @@ const SOPStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -185,6 +229,11 @@ const PemasukanStack = ({navigation}) => {
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />
@@ -199,10 +248,19 @@ const PengeluaranStack = ({navigation}) => {
                 options={{
                     headerTintColor: "#333",
                     headerStyle: {
-                        backgroundColor: "#fff"
+                        backgroundColor: "#fff",
+                    },
+                    headerTitleStyle: {
+                        fontFamily: 'Causten-Bold',
+                        size: 24
                     },
                     headerLeft: () => (
                         <Icon.Button  name="align-justify" iconStyle={{marginLeft: 12, marginTop: 5}} backgroundColor="#fff" size={18} color={'#7F43D6'} onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity activeOpacity={0.8} style={{marginRight: 20}}>
+                            <Image source={require('../../../../assets/images/user.jpg')} style={{width: 35, height: 35, borderRadius: 100}} />
+                        </TouchableOpacity>
                     )
                 }}
             />

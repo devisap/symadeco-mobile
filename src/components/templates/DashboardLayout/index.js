@@ -30,7 +30,7 @@ const DashboardLayout = () => {
                             <Text style={{fontFamily: "Causten-Bold", fontSize: 48, color: '#fff'}}>15</Text>
                         </View>
                         <View style={{flex: 1, backgroundColor: '#fff', padding: 15, borderRadius: 10, marginRight: 20}}>
-                            <Paragraph text={"Progress"} color={"#7F43D6"} />
+                            <Paragraph text={"On Progress"} color={"#7F43D6"} />
                             <Text style={{fontFamily: "Causten-Bold", fontSize: 48, color: '#7F43D6'}}>2</Text>
                         </View>
                         <View style={{flex: 1, backgroundColor: '#fff', padding: 15, borderRadius: 10}}>

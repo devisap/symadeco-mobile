@@ -32,12 +32,12 @@ const ButtonState = (props) => {
 
     return (
         <View style={{backgroundColor: bgColor, borderRadius: 5, alignItems: 'center', justifyContent: 'center', flexDirection: 'row'}}>
-            <Text style={{fontFamily: "Causten-SemiBold", fontSize: 18, color: textColor, marginVertical: 11, marginLeft: 11, marginRight: 7}}>{props.text? props.text : 'Button'}</Text>
+            <Text style={{fontFamily: "Causten-SemiBold", fontSize: 12, color: textColor, marginVertical: 11, marginLeft: 11, marginRight: 7}}>{props.text? props.text : 'Button'}</Text>
             {
                 isActive?
-                <Icon name={"chevron-down"} size={18} color={textColor}/>
+                <Icon name={"chevron-down"} size={14} color={textColor}/>
                 :
-                <Icon name={"chevron-right"} size={18} color={textColor}/>
+                <Icon name={"chevron-right"} size={14} color={textColor}/>
             }
         </View>
     )

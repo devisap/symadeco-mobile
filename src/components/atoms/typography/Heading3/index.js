@@ -10,7 +10,7 @@ const Heading3 = (props) => {
         }
     })
     return (
-        <Text style={{fontFamily: "Causten-Bold", color: textColor, fontSize: 20}}>{props.text? props.text : 'Heading3'}</Text>
+        <Text style={{fontFamily: "Causten-Bold", color: textColor, fontSize: 14}}>{props.text? props.text : 'Heading3'}</Text>
     )
 }
 

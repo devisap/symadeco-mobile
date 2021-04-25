@@ -10,7 +10,7 @@ const Paragraph = (props) => {
         }
     })
     return(
-        <Text style={{fontFamily: 'Causten-Medium', color: textColor, fontSize: 18}}>{props.text? props.text : 'Paragraph'}</Text>
+        <Text style={{fontFamily: 'Causten-Medium', color: textColor, fontSize: 12}}>{props.text? props.text : 'Paragraph'}</Text>
     )
 }
 

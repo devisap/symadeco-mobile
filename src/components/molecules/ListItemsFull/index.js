@@ -8,18 +8,14 @@ import ButtonPrimary from '../../atoms/buttons/ButtonPrimary'
 import Collapsible from 'react-native-collapsible'
 import Paragraph from '../../atoms/typography/Paragraph'
 
-const ListItems = (props) => {
+const ListItemsFull = (props) => {
     return (
         <View style={{marginTop: 20}}>
-            <Heading1 text={props.label? props.label : ''} color={"#7F43D6"} />
             <View style={{marginTop: 10}}>
                 <Item state={'success'} text={"Baru"} />
                 <Item state={'info'} text={"Selesai"} />
                 <Item state={'warning'} text={"Booking"} />
                 <Item state={'danger'} text={"NonAktif"} />
-            </View>
-            <View style={{marginTop: 40, marginBottom: 40}}>
-                <ButtonPrimary text={'Selengkapnya'} />
             </View>
         </View>
     )
@@ -72,4 +68,4 @@ const Item = (props) => {
     )
 }
 
-export default ListItems
+export default ListItemsFull
