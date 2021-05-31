@@ -25,11 +25,13 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import { SplashScreen } from './pages';
+import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 const App = () => {
   return (
     // <SplashScreen />
-    <Login />
+    // <Login />
+    <Dashboard />
   );
 };
 

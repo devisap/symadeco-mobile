@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Logo from '../../assets/images/Logo.svg'
-import ButtonSubmit from '../../components/buttons/ButtonSubmit'
+import ButtonSubmit from '../../components/atoms/buttons/ButtonSubmit'
 
 const Login = () => {
     const [userInptTintColor, setUserInptTintColor] = useState('#CBCBCB')
