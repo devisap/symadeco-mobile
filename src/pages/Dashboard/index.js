@@ -53,7 +53,7 @@ const Dashboard = () => {
                 </View>
                 <View style={{marginTop: 20}} />
                 <View style={styles.listPemesananBox}>
-                    <Heading1 text="Daftar Pemesanan" color="#7F43D6" />
+                    <Heading1 text="Daftar Klien" color="#7F43D6" />
                     <View style={styles.listPemesananContent}>
                         <ListKlien />
                     </View>

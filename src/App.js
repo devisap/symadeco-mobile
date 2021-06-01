@@ -26,12 +26,16 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import { SplashScreen } from './pages';
 import Dashboard from './pages/Dashboard';
+import Klien from './pages/klien/Klien';
+import KlienEdit from './pages/klien/KlienEdit';
 import Login from './pages/Login';
 const App = () => {
   return (
     // <SplashScreen />
     // <Login />
-    <Dashboard />
+    // <Dashboard />
+    <Klien />
+    // <KlienEdit />
   );
 };
 
