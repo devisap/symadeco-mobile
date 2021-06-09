@@ -7,7 +7,7 @@ import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
 
-const ListKlienMenu = () => {
+const ListPemesananMenu = () => {
     return (
         <FlatList 
             data={[
@@ -38,7 +38,7 @@ const ListDetail = () => {
             >
                 <Icon name="person" size={28} color="#333" />
                 <View style={{marginLeft: 20}} />
-                <Heading3 text="Ilham" />
+                <Heading3 text="2019081600000001" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
                     <View style={styles.btnState}>
                         <Heading3 text="Aktif" color="#0585FB" />
@@ -65,6 +65,10 @@ const ListDetail = () => {
                         <View style={{marginRight: 20}} />
                         <TouchableOpacity>
                             <Icon name="ios-bookmark" color="#7F43D6" size={16} />
+                        </TouchableOpacity>
+                        <View style={{marginRight: 20}} />
+                        <TouchableOpacity>
+                            <Icon name="print" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                     </View>
                 </Popover>
@@ -123,11 +127,11 @@ const styles = StyleSheet.create({
     },
     popover: {
         borderRadius: 10
-    },  
+    },
     popoverMenu: {
         flexDirection: 'row',
         margin: 20
     }
 })
 
-export default ListKlienMenu
+export default ListPemesananMenu

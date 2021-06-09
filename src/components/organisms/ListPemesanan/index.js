@@ -7,7 +7,7 @@ import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
 
-const ListProject = () => {
+const ListPemesanan = () => {
     return (
         <FlatList 
             data={[
@@ -38,7 +38,7 @@ const ListDetail = (props) => {
         >
             <Icon name="person" size={28} color="#333" />
             <View style={{marginLeft: 20}} />
-            <Heading2 text={props.id} />
+            <Heading3 text={props.id} />
             <View style={{flex: 1, alignItems: 'flex-end'}}>
                 <View style={styles.btnState}>
                     <Heading3 text="Baru" color="#FBBC05" />
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ListProject
+export default ListPemesanan

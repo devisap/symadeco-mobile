@@ -29,13 +29,17 @@ import Dashboard from './pages/Dashboard';
 import Klien from './pages/klien/Klien';
 import KlienEdit from './pages/klien/KlienEdit';
 import Login from './pages/Login';
+import Pemesanan from './pages/pemesanan/Pemesanan';
+import PemesananAdd from './pages/pemesanan/PemesananAdd';
 const App = () => {
   return (
     // <SplashScreen />
     // <Login />
     // <Dashboard />
-    <Klien />
+    // <Klien />
     // <KlienEdit />
+    <Pemesanan />
+    // <PemesananAdd />
   );
 };
 

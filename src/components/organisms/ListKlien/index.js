@@ -38,7 +38,7 @@ const ListDetail = () => {
             >
                 <Icon name="person" size={28} color="#333" />
                 <View style={{marginLeft: 20}} />
-                <Heading2 text="Ilham" />
+                <Heading3 text="Ilham" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
                     <View style={styles.btnState}>
                         <Heading3 text="Aktif" color="#0585FB" />

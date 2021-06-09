@@ -5,7 +5,7 @@ import Paragraph from '../../components/atoms/typography/Paragraph'
 import Heading1 from '../../components/atoms/typography/Heading1'
 import Heading3 from '../../components/atoms/typography/Heading3'
 import SearchBox from '../../components/atoms/SearchBox'
-import ListProject from '../../components/organisms/ListProject'
+import ListPemesanan from '../../components/organisms/ListPemesanan'
 import ButtonSubmit from '../../components/atoms/buttons/ButtonSubmit'
 import ListKlien from '../../components/organisms/ListKlien'
 const Dashboard = () => {
@@ -45,7 +45,7 @@ const Dashboard = () => {
                 <View style={styles.listPemesananBox}>
                     <Heading1 text="Daftar Pemesanan" color="#7F43D6" />
                     <View style={styles.listPemesananContent}>
-                        <ListProject />
+                        <ListPemesanan />
                     </View>
                     <View style={styles.btnSubmitBox}>
                         <ButtonSubmit title="Selengkapnya" />
