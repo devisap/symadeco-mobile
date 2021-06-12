@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
@@ -6,6 +7,8 @@ import ButtonSubmit from '../../../components/atoms/buttons/ButtonSubmit'
 import BasicField from '../../../components/atoms/forms/BasicField'
 
 const KlienEdit = () => {
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.content}>
@@ -19,7 +22,7 @@ const KlienEdit = () => {
             </ScrollView>
             <View style={styles.footer}>
                 <View style={styles.footerSection}>
-                    <ButtonSecondary title="Batal" />
+                    <ButtonSecondary title="Batal" onPress={() => navigation.goBack()} />
                 </View>
                 <View style={{marginRight: 20}} />
                 <View style={styles.footerSection}>

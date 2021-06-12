@@ -36,7 +36,7 @@ const ListDetail = (props) => {
             style={styles.container}
             onPress={() => setIsCollapsed(!isCollapsed)}
         >
-            <Icon name="person" size={28} color="#333" />
+            <Icon name="ios-layers" size={28} color="#333" />
             <View style={{marginLeft: 20}} />
             <Heading3 text={props.id} />
             <View style={{flex: 1, alignItems: 'flex-end'}}>

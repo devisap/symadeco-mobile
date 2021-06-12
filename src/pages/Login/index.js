@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import Logo from '../../assets/images/Logo.svg'
 import ButtonSubmit from '../../components/atoms/buttons/ButtonSubmit'
 
-const Login = () => {
+const Login = ({ navigation }) => {
     const [userInptTintColor, setUserInptTintColor] = useState('#CBCBCB')
     const [passInptTintColor, setPassInptTintColor] = useState('#CBCBCB')
 
@@ -35,7 +35,7 @@ const Login = () => {
                 />
             </View>
             <View style={styles.btnSubmitBox}>
-                <ButtonSubmit title="Login" />
+                <ButtonSubmit title="Login" onPress={() => navigation.replace('DashboardScreen')} />
             </View>
         </ScrollView>
     )

@@ -4,7 +4,11 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const ButtonSecondary = props => {
     return (
-        <TouchableOpacity activeOpacity={0.8} style={styles.button}>
+        <TouchableOpacity 
+            activeOpacity={0.8} 
+            style={styles.button}
+            onPress={props.onPress}
+        >
             <Text style={styles.title}>{props.title? props.title : 'Button'}</Text>
         </TouchableOpacity>
     )

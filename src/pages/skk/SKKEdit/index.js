@@ -1,24 +1,16 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { ScrollView, StyleSheet, View } from 'react-native'
 import ButtonSecondary from '../../../components/atoms/buttons/ButtonSecondary'
 import ButtonSubmit from '../../../components/atoms/buttons/ButtonSubmit'
 import BasicField from '../../../components/atoms/forms/BasicField'
-import DateTimeField from '../../../components/atoms/forms/DateTimeField'
+import DropdownSearchField from '../../../components/atoms/forms/DropdownField'
 
-const PemesananAdd = ({navigation}) => {
+const SKKEdit = () => {
     return (
         <View style={styles.container}>
             <ScrollView style={styles.content}>
-                <BasicField label="Uang Muka" />
-                <View style={{marginTop: 20}} />
-                <BasicField label="Biaya" />
-                <View style={{marginTop: 20}} />
-                <BasicField label="Deskripsi" />
-                <View style={{marginTop: 20}} />
-                <BasicField label="Alamat Acara" />
-                <View style={{marginTop: 20}} />
-                <DateTimeField label="Tanggal Acara" />
+                <DropdownSearchField label="No Pemasanan" />
+                <View style={{marginBottom: 200}} />
             </ScrollView>
             <View style={styles.footer}>
                 <View style={styles.footerSection}>
@@ -53,4 +45,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PemesananAdd
+export default SKKEdit

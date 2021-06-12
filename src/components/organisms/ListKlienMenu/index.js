@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core'
 import React, { useState } from 'react'
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, VirtualizedList } from 'react-native'
 import Collapsible from 'react-native-collapsible'
@@ -29,6 +30,8 @@ const ListKlienMenu = () => {
 const ListDetail = () => {
     const [isCollapsed, setIsCollapsed] = useState(true)
 
+    const navigation = useNavigation()
+
     return (
         <>
             <TouchableOpacity 
@@ -59,7 +62,7 @@ const ListDetail = () => {
                     )}
                 >
                     <View style={styles.popoverMenu}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('KlienEditScreen')}>
                             <Icon name="ios-pencil" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                         <View style={{marginRight: 20}} />

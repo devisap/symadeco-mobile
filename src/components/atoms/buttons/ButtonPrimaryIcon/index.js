@@ -5,7 +5,11 @@ import Heading2 from '../../typography/Heading2'
 
 const ButtonPrimaryIcon = props => {
     return (
-        <TouchableOpacity style={styles.container} activeOpacity={0.8}>
+        <TouchableOpacity 
+            style={styles.container} 
+            activeOpacity={0.8}
+            onPress={props.onPress}
+        >
             <Icon name={props.icon} color="#fff" size={24} style={styles.btnIcon} />
             <Heading2 text={props.text? props.text : 'Button'} color="#fff" />
         </TouchableOpacity>

@@ -5,7 +5,7 @@ import FilterStatus from '../../../components/atoms/filters/FilterStatus'
 import SearchBox from '../../../components/atoms/SearchBox'
 import ListKlienMenu from '../../../components/organisms/ListKlienMenu'
 
-const Klien = () => {
+const Klien = ({ navigation }) => {
     return (
         <ScrollView style={styles.container}>
             <View style={styles.headerBox}>
@@ -18,7 +18,7 @@ const Klien = () => {
                     </View>
                     <View style={{marginRight: 20}} />
                     <View style={styles.actionSection}>
-                        <ButtonPrimaryIcon icon="add" text="Tambah" />
+                        <ButtonPrimaryIcon icon="add" text="Tambah" onPress={() => navigation.navigate('KlienAddScreen')} />
                     </View>
                 </View>
             </View>

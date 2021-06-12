@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core'
 import React, { useState } from 'react'
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, VirtualizedList } from 'react-native'
 import Collapsible from 'react-native-collapsible'
@@ -7,7 +8,7 @@ import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
 
-const ListPemesananMenu = () => {
+const ListPemasukanMenu = () => {
     return (
         <FlatList 
             data={[
@@ -28,6 +29,8 @@ const ListPemesananMenu = () => {
 
 const ListDetail = () => {
     const [isCollapsed, setIsCollapsed] = useState(true)
+    
+    const navigation = useNavigation()
 
     return (
         <>
@@ -36,7 +39,7 @@ const ListDetail = () => {
                 style={styles.container}
                 onPress={() => setIsCollapsed(!isCollapsed)}
             >
-                <Icon name="ios-layers" size={28} color="#333" />
+                <Icon name="ios-arrow-down-circle" size={28} color="#333" />
                 <View style={{marginLeft: 20}} />
                 <Heading3 text="2019081600000001" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
@@ -59,39 +62,31 @@ const ListDetail = () => {
                     )}
                 >
                     <View style={styles.popoverMenu}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate('PemasukanEditScreen')}>
                             <Icon name="ios-pencil" color="#7F43D6" size={16} />
-                        </TouchableOpacity>
-                        <View style={{marginRight: 20}} />
-                        <TouchableOpacity>
-                            <Icon name="ios-bookmark" color="#7F43D6" size={16} />
-                        </TouchableOpacity>
-                        <View style={{marginRight: 20}} />
-                        <TouchableOpacity>
-                            <Icon name="print" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                     </View>
                 </Popover>
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed} style={styles.itemDetailBox}>
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Telepon" color="#CBCBCB" />
+                <Paragraph text="Tanggal Masuk" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="089794875323" />
+                    <Paragraph text="12 Maret 2021" />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Alamat" color="#CBCBCB" />
+                <Paragraph text="Jumlah" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="Jl. Bantaran Barat" />
+                    <Paragraph text="Rp. 20000" />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Tanggal Acara" color="#CBCBCB" />
+                <Paragraph text="Keterangan" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="20 Agustus 2021" />
+                    <Paragraph text="Biaya buat kursi" />
                 </View>
             </View>
         </Collapsible>
@@ -134,4 +129,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ListPemesananMenu
+export default ListPemasukanMenu

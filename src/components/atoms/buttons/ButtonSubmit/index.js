@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient'
 
 const ButtonSubmit = props => {
     return (
-        <TouchableOpacity activeOpacity={0.8}>
+        <TouchableOpacity activeOpacity={0.8} onPress={props.onPress}>
             <LinearGradient 
                 start={{x: 0.7, y: 0.5}} 
                 end={{x: 0.9, y: 0.1}} 
