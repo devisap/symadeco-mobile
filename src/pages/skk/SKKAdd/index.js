@@ -1,15 +1,17 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import ButtonSecondary from '../../../components/atoms/buttons/ButtonSecondary'
 import ButtonSubmit from '../../../components/atoms/buttons/ButtonSubmit'
-import BasicField from '../../../components/atoms/forms/BasicField'
 import DropdownSearchField from '../../../components/atoms/forms/DropdownField'
 
 const SKKAdd = () => {
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.content}>
-                <DropdownSearchField label="No Pemasanan" />
+                <DropdownSearchField label="No Pemesanan" />
                 <View style={{marginBottom: 200}} />
             </ScrollView>
             <View style={styles.footer}>

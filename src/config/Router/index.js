@@ -9,7 +9,7 @@ import {
     Pemesanan, PemesananAdd, SKK,
     SKKAdd, SKKEdit, Pemasukan, PemasukanAdd,
     PemasukanEdit, Pengeluaran, PengeluaranAdd,
-    PengeluaranEdit
+    PengeluaranEdit, SOP, SOPAdd, SOPEdit
 } from '../../pages'
 import { Image, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -90,6 +90,7 @@ const MyDrawer = ({ navigation }) => {
             <Drawer.Screen name="SKKScreen" component={SKKStack} />
             <Drawer.Screen name="PemasukanScreen" component={PemasukanStack} />
             <Drawer.Screen name="PengeluaranScreen" component={PengeluaranStack} />
+            <Drawer.Screen name="SOPScreen" component={SOPStack} />
         </Drawer.Navigator>
     )
 }
@@ -176,9 +177,11 @@ const CustomMyDrawer = props => {
                     labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14, paddingLeft: 52}}
                 />
                 <DrawerItem
+                    focused={currentScreen == 'SOPScreen' ? true : false}
                     activeTintColor="#7F43D6"
                     label="SOP"
                     labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14, paddingLeft: 52}}
+                    onPress={() => screenNavigate('SOPScreen')}
                 />
                 <DrawerItem
                     focused={currentScreen == 'PemasukanScreen'? true : false}
@@ -418,6 +421,45 @@ const PengeluaranStack = ({ navigation }) => {
                 component={PengeluaranEdit} 
                 options={{
                     title: 'Edit Pengeluaran'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+const SOPStack = ({ navigation }) => {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerTitleStyle: {fontFamily: 'Causten-Bold', color: '#333'},
+            }}
+        >
+            <Stack.Screen 
+                name="SOPScreen" 
+                component={SOP}
+                options={{
+                    headerShown: true,
+                    title: "SOP",
+                    headerLeft: () => (
+                        <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <HeaderUserProfile />
+                    )
+                }}
+             />
+             <Stack.Screen 
+                name="SOPAddScreen" 
+                component={SOPAdd} 
+                options={{
+                    title: 'Tambah SOP'
+                }}
+            />
+             <Stack.Screen 
+                name="SOPEditScreen" 
+                component={SOPEdit} 
+                options={{
+                    title: 'Edit SOP'
                 }}
             />
         </Stack.Navigator>

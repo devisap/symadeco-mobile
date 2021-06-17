@@ -37,6 +37,8 @@ import PemesananAdd from './pages/pemesanan/PemesananAdd';
 import Pengeluaran from './pages/pengeluaran/Pengeluaran';
 import SKK from './pages/skk/SKK';
 import SKKAdd from './pages/skk/SKKAdd';
+import SOP from './pages/sop/SOP';
+import SOPAdd from './pages/sop/SOPAdd';
 const App = () => {
   return (
     // <SplashScreen />
@@ -50,6 +52,8 @@ const App = () => {
     // <Pemasukan />
     // <PemasukanAdd />
     // <Pengeluaran />
+    // <SOP />
+    // <SOPAdd />
   );
 };
 

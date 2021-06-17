@@ -14,6 +14,7 @@ const DropdownSearchField = props => {
         <View>
             <Text style={styles.label}>{props.label? props.label : 'Label'}</Text>
             <DropDownPicker
+                placeholder={props.label? props.label : 'Label'}
                 style={styles.dropdown}
                 searchable={true}
                 open={open}

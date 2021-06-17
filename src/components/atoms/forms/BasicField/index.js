@@ -6,7 +6,7 @@ const BasicField = props => {
         <>
             <Text style={styles.label}>{props.label? props.label : 'Label'}</Text>
             <TextInput 
-                placeholder={props.label? props.label : 'undefined'}
+                placeholder={props.label? props.label : 'Label'}
                 placeholderTextColor="#CBCBCB"
                 style={styles.inputField}
             />

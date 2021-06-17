@@ -15,10 +15,14 @@ import PemasukanEdit from './pemasukan/PemasukanEdit'
 import Pengeluaran from './pengeluaran/Pengeluaran'
 import PengeluaranAdd from './pengeluaran/PengeluaranAdd'
 import PengeluaranEdit from './pengeluaran/PengeluaranEdit'
+import SOP from './sop/SOP'
+import SOPAdd from './sop/SOPAdd'
+import SOPEdit from './sop/SOPEdit'
 
 export {
     SplashScreen, Login, Dashboard, Pemesanan,
     PemesananAdd, Klien, KlienAdd, KlienEdit,
     SKK, SKKAdd, SKKEdit, Pemasukan, PemasukanAdd,
-    PemasukanEdit, Pengeluaran, PengeluaranAdd, PengeluaranEdit
+    PemasukanEdit, Pengeluaran, PengeluaranAdd, PengeluaranEdit,
+    SOP, SOPAdd, SOPEdit
 }
