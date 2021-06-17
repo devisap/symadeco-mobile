@@ -9,7 +9,9 @@ import {
     Pemesanan, PemesananAdd, SKK,
     SKKAdd, SKKEdit, Pemasukan, PemasukanAdd,
     PemasukanEdit, Pengeluaran, PengeluaranAdd,
-    PengeluaranEdit, SOP, SOPAdd, SOPEdit
+    PengeluaranEdit, SOP, SOPAdd, SOPEdit,
+    NPembayaran, NPembayaranAdd, NPembayaranSetBarang,
+    NPembayaranEdit, NPembayaranEditSetBarang
 } from '../../pages'
 import { Image, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -91,6 +93,7 @@ const MyDrawer = ({ navigation }) => {
             <Drawer.Screen name="PemasukanScreen" component={PemasukanStack} />
             <Drawer.Screen name="PengeluaranScreen" component={PengeluaranStack} />
             <Drawer.Screen name="SOPScreen" component={SOPStack} />
+            <Drawer.Screen name="NPembayaranScreen" component={NPembayaranStack} />
         </Drawer.Navigator>
     )
 }
@@ -167,9 +170,11 @@ const CustomMyDrawer = props => {
                     onPress={() => screenNavigate('SKKScreen')}
                 />
                 <DrawerItem
+                    focused={currentScreen == 'NPembayaranScreen'? true : false}
                     activeTintColor="#7F43D6"
                     label="Nota Pembayaran"
                     labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14, paddingLeft: 52}}
+                    onPress={() => screenNavigate('NPembayaranScreen')}
                 />
                 <DrawerItem
                     activeTintColor="#7F43D6"
@@ -460,6 +465,59 @@ const SOPStack = ({ navigation }) => {
                 component={SOPEdit} 
                 options={{
                     title: 'Edit SOP'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+const NPembayaranStack = ({ navigation }) => {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerTitleStyle: {fontFamily: 'Causten-Bold', color: '#333'},
+            }}
+        >
+            <Stack.Screen 
+                name="NPembayaranScreen" 
+                component={NPembayaran}
+                options={{
+                    headerShown: true,
+                    title: "Nota Pembayaran",
+                    headerLeft: () => (
+                        <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <HeaderUserProfile />
+                    )
+                }}
+             />
+            <Stack.Screen 
+                name="NPembayaranAddScreen" 
+                component={NPembayaranAdd} 
+                options={{
+                    title: 'Tambah Nota Pembayaran'
+                }}
+            />
+            <Stack.Screen 
+                name="NPembayaranEditScreen" 
+                component={NPembayaranEdit} 
+                options={{
+                    title: 'Edit Nota Pembayaran'
+                }}
+            />
+            <Stack.Screen 
+                name="NPembayaranSetBarangScreen" 
+                component={NPembayaranSetBarang} 
+                options={{
+                    title: 'Atur Barang'
+                }}
+            />
+            <Stack.Screen 
+                name="NPembayaranEditSetBarangScreen" 
+                component={NPembayaranEditSetBarang} 
+                options={{
+                    title: 'Atur Ulang Barang'
                 }}
             />
         </Stack.Navigator>

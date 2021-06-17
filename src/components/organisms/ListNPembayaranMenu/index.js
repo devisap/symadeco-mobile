@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { FlatList, StyleSheet, TouchableOpacity, View, VirtualizedList } from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, VirtualizedList } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import Collapsible from 'react-native-collapsible'
-import { ScrollView } from 'react-native-gesture-handler'
+import Popover from 'react-native-popover-view'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
 
-const ListKlien = () => {
+const ListNPembayaranMenu = () => {
     return (
         <FlatList 
             data={[
@@ -28,6 +29,14 @@ const ListKlien = () => {
 
 const ListDetail = () => {
     const [isCollapsed, setIsCollapsed] = useState(true)
+    const [showPopover, setShowPopover] = useState(false)
+    
+    const navigation = useNavigation()
+
+    const screenNavigate = screen => {
+        setShowPopover(false)
+        navigation.navigate(screen)
+    }
 
     return (
         <>
@@ -36,9 +45,9 @@ const ListDetail = () => {
                 style={styles.container}
                 onPress={() => setIsCollapsed(!isCollapsed)}
             >
-                <Icon name="person" size={28} color="#333" />
+                <Icon name="ios-card" size={28} color="#333" />
                 <View style={{marginLeft: 20}} />
-                <Heading3 text="Ilham" />
+                <Heading3 text="2019081600000001" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
                     <View style={styles.btnState}>
                         <Heading3 text="Aktif" color="#0585FB" />
@@ -50,26 +59,57 @@ const ListDetail = () => {
                         }
                     </View>
                 </View>
+                <Popover
+                    onRequestClose={() => setShowPopover(false)}
+                    isVisible={showPopover}
+                    popoverStyle={styles.popover}
+                    from={(
+                        <TouchableOpacity onPress={() => setShowPopover(true)} style={styles.itemDetailMenu} >
+                            <Icon name="ellipsis-vertical" size={16} color="#333" />
+                        </TouchableOpacity>
+                    )}
+                >
+                    <View style={styles.popoverMenu}>
+                        <TouchableOpacity onPress={() => screenNavigate('NPembayaranEditScreen')}>
+                            <Icon name="ios-pencil" color="#7F43D6" size={16} />
+                        </TouchableOpacity>
+                        <View style={{marginRight: 20}} />
+                        <TouchableOpacity onPress={() => screenNavigate('NPembayaranEditSetBarangScreen')}>
+                            <Icon name="ios-cube" color="#7F43D6" size={16} />
+                        </TouchableOpacity>
+                        <View style={{marginRight: 20}} />
+                        <TouchableOpacity>
+                            <Icon name="print" color="#7F43D6" size={16} />
+                        </TouchableOpacity>
+                    </View>
+                </Popover>
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed} style={styles.itemDetailBox}>
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Telepon" color="#CBCBCB" />
+                <Paragraph text="No Pemesanan" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
                     <Paragraph text="089794875323" />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Alamat" color="#CBCBCB" />
+                <Paragraph text="Uang Muka" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="Jl. Bantaran Barat" />
+                    <Paragraph text="Rp. 20000" />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Email" color="#CBCBCB" />
+                <Paragraph text="Biaya" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="ilham.sagitaputra@gmail.com" />
+                    <Paragraph text="Rp. 200000" />
+                </View>
+            </View>
+            <View style={{marginTop: 15}} />
+            <View style={styles.itemDetailSection}>
+                <Paragraph text="Deskripsi" color="#CBCBCB" />
+                <View style={{flex: 1, alignItems: 'flex-end'}}>
+                    <Paragraph text="Untuk Itu" />
                 </View>
             </View>
         </Collapsible>
@@ -99,7 +139,17 @@ const styles = StyleSheet.create({
     },
     itemDetailSection: {
         flexDirection: 'row'
+    },
+    itemDetailMenu: {
+        marginLeft: 20
+    },
+    popover: {
+        borderRadius: 10
+    },
+    popoverMenu: {
+        flexDirection: 'row',
+        margin: 20
     }
 })
 
-export default ListKlien
+export default ListNPembayaranMenu

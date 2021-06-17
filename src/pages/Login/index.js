@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Logo from '../../assets/images/Logo.svg'
@@ -7,6 +7,18 @@ import ButtonSubmit from '../../components/atoms/buttons/ButtonSubmit'
 const Login = ({ navigation }) => {
     const [userInptTintColor, setUserInptTintColor] = useState('#CBCBCB')
     const [passInptTintColor, setPassInptTintColor] = useState('#CBCBCB')
+
+    useEffect(() => {
+        requestPermissions()      
+    }, [])
+
+    const requestPermissions = async () => {
+        try {
+          const granted = await PermissionsAndroid.requestMultiple(['android.permission.CAMERA', 'android.permission.WRITE_EXTERNAL_STORAGE']);
+        } catch (err) {
+          console.warn(err);
+        }
+    }
 
     return (
         <ScrollView style={styles.container}>

@@ -30,6 +30,8 @@ import Dashboard from './pages/Dashboard';
 import Klien from './pages/klien/Klien';
 import KlienEdit from './pages/klien/KlienEdit';
 import Login from './pages/Login';
+import NPembayaran from './pages/nPembayaran/NPembayaran';
+import NPembayaranAdd from './pages/nPembayaran/NPembayaranAdd';
 import Pemasukan from './pages/pemasukan/Pemasukan';
 import PemasukanAdd from './pages/pemasukan/PemasukanAdd';
 import Pemesanan from './pages/pemesanan/Pemesanan';
@@ -39,6 +41,7 @@ import SKK from './pages/skk/SKK';
 import SKKAdd from './pages/skk/SKKAdd';
 import SOP from './pages/sop/SOP';
 import SOPAdd from './pages/sop/SOPAdd';
+import NPembayaranSetBarang from './pages/nPembayaran/NPembayaranSetBarang';
 const App = () => {
   return (
     // <SplashScreen />
@@ -54,6 +57,9 @@ const App = () => {
     // <Pengeluaran />
     // <SOP />
     // <SOPAdd />
+    // <NPembayaran />
+    // <NPembayaranAdd />
+    // <NPembayaranSetBarang />
   );
 };
 

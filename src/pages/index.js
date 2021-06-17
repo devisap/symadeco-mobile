@@ -18,11 +18,17 @@ import PengeluaranEdit from './pengeluaran/PengeluaranEdit'
 import SOP from './sop/SOP'
 import SOPAdd from './sop/SOPAdd'
 import SOPEdit from './sop/SOPEdit'
+import NPembayaran from './nPembayaran/NPembayaran'
+import NPembayaranAdd from './nPembayaran/NPembayaranAdd'
+import NPembayaranEdit from './nPembayaran/NPembayaranEdit'
+import NPembayaranSetBarang from './nPembayaran/NPembayaranSetBarang'
+import NPembayaranEditSetBarang from './nPembayaran/NPembayaranEditSetBarang'
 
 export {
     SplashScreen, Login, Dashboard, Pemesanan,
     PemesananAdd, Klien, KlienAdd, KlienEdit,
     SKK, SKKAdd, SKKEdit, Pemasukan, PemasukanAdd,
     PemasukanEdit, Pengeluaran, PengeluaranAdd, PengeluaranEdit,
-    SOP, SOPAdd, SOPEdit
+    SOP, SOPAdd, SOPEdit, NPembayaran, NPembayaranAdd, NPembayaranSetBarang,
+    NPembayaranEdit, NPembayaranEditSetBarang
 }

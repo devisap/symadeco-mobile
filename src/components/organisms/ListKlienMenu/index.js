@@ -88,9 +88,9 @@ const ListDetail = () => {
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Tanggal Acara" color="#CBCBCB" />
+                <Paragraph text="Email" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="20 Agustus 2021" />
+                    <Paragraph text="ilham.sagitaputra@gmail.com" />
                 </View>
             </View>
         </Collapsible>
