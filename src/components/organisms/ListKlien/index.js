@@ -3,30 +3,34 @@ import { FlatList, StyleSheet, TouchableOpacity, View, VirtualizedList } from 'r
 import Collapsible from 'react-native-collapsible'
 import { ScrollView } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { useEffect } from 'react/cjs/react.development'
 import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
 
-const ListKlien = () => {
+const ListKlien = props => {
+    const [list, setList] = useState([])
+
+    useEffect(() => {
+        props.listSource && setList(props.listSource)   
+    })
+
     return (
         <FlatList 
-            data={[
-                {id: 2019081600000001, marketing: 'Marketing B', Alamat: 'Jl. Bantaran Barat', tglAcara: '20 Agustus 2021'},
-                {id: 2019081600000003, marketing: 'Marketing B', Alamat: 'Jl. Bantaran Barat', tglAcara: '20 Agustus 2021'},
-                {id: 2019081600000004, marketing: 'Marketing B', Alamat: 'Jl. Bantaran Barat', tglAcara: '20 Agustus 2021'},
-                {id: 2019081600000005, marketing: 'Marketing B', Alamat: 'Jl. Bantaran Barat', tglAcara: '20 Agustus 2021'},
-            ]}
+            data={list}
             keyExtractor={item => item.id}
             renderItem={({item}) => {
                 return (
-                    <ListDetail />
+                    <View key={item.id}>
+                        <ListDetail item={item} />
+                    </View>
                 )
             }}
         />
     )
 }
 
-const ListDetail = () => {
+const ListDetail = props => {
     const [isCollapsed, setIsCollapsed] = useState(true)
 
     return (
@@ -38,7 +42,7 @@ const ListDetail = () => {
             >
                 <Icon name="person" size={28} color="#333" />
                 <View style={{marginLeft: 20}} />
-                <Heading3 text="Ilham" />
+                <Heading3 text={props.item['NAMA_KLIEN']} />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
                     <View style={styles.btnState}>
                         <Heading3 text="Aktif" color="#0585FB" />
@@ -55,21 +59,21 @@ const ListDetail = () => {
             <View style={styles.itemDetailSection}>
                 <Paragraph text="Telepon" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="089794875323" />
+                    <Paragraph text={props.item['TELP_KLIEN']} />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
                 <Paragraph text="Alamat" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="Jl. Bantaran Barat" />
+                    <Paragraph text={props.item['ALAMAT_KLIEN']} />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
                 <Paragraph text="Email" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text="ilham.sagitaputra@gmail.com" />
+                    <Paragraph text={props.item['EMAIL_KLIEN']} />
                 </View>
             </View>
         </Collapsible>

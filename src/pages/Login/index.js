@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { PermissionsAndroid, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Logo from '../../assets/images/Logo.svg'
 import ButtonSubmit from '../../components/atoms/buttons/ButtonSubmit'

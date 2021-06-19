@@ -42,14 +42,19 @@ import SKKAdd from './pages/skk/SKKAdd';
 import SOP from './pages/sop/SOP';
 import SOPAdd from './pages/sop/SOPAdd';
 import NPembayaranSetBarang from './pages/nPembayaran/NPembayaranSetBarang';
+import { RecoilRoot } from 'recoil';
+
 const App = () => {
+  
   return (
     // <SplashScreen />
     // <Login />
     // <Dashboard />
     // <Klien />
     // <KlienEdit />
-    <Router />
+    <RecoilRoot>
+      <Router />
+    </RecoilRoot>
     // <PemesananAdd />
     // <SKKAdd />
     // <Pemasukan />
