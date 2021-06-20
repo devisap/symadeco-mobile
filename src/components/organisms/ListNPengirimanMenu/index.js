@@ -1,6 +1,6 @@
-import { useNavigation } from '@react-navigation/core'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, VirtualizedList } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
 import Collapsible from 'react-native-collapsible'
 import Popover from 'react-native-popover-view'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -8,48 +8,34 @@ import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
 
-const ListKlienMenu = props => {
-    const [list, setList] = useState([])
-
-    useEffect(() => {
-        props.listSource && setList(props.listSource)
-    })
-
+const ListNPengirimanMenu = () => {
     return (
         <FlatList 
-            data={list}
+            data={[
+                {id: 2019081600000001, marketing: 'Marketing B', Alamat: 'Jl. Bantaran Barat', tglAcara: '20 Agustus 2021'},
+                {id: 2019081600000003, marketing: 'Marketing B', Alamat: 'Jl. Bantaran Barat', tglAcara: '20 Agustus 2021'},
+                {id: 2019081600000004, marketing: 'Marketing B', Alamat: 'Jl. Bantaran Barat', tglAcara: '20 Agustus 2021'},
+                {id: 2019081600000005, marketing: 'Marketing B', Alamat: 'Jl. Bantaran Barat', tglAcara: '20 Agustus 2021'},
+            ]}
             keyExtractor={item => item.id}
             renderItem={({item}) => {
                 return (
-                    <View key={item.id}>
-                        <ListDetail item={item} />
-                    </View>
+                    <ListDetail />
                 )
             }}
         />
     )
 }
 
-const ListDetail = props => {
+const ListDetail = () => {
     const [isCollapsed, setIsCollapsed] = useState(true)
-    const [textStatus, setTextStatus]   = useState('')
-    const [textColor, setTextColor]     = useState('')
     const [showPopover, setShowPopover] = useState(false)
-    const navigation = useNavigation()
     
-    useEffect(() => {
-        if(props.item['deleted_at']){
-            setTextStatus('Non Aktif')
-            setTextColor('#E50000')
-        }else{
-            setTextStatus('Aktif')
-            setTextColor('#0585FB')
-        }
-    }, [])
+    const navigation = useNavigation()
 
-    const screenNavigate = (screen, id) => {
+    const screenNavigate = screen => {
         setShowPopover(false)
-        navigation.navigate(screen, { id })
+        navigation.navigate(screen)
     }
 
     return (
@@ -59,60 +45,71 @@ const ListDetail = props => {
                 style={styles.container}
                 onPress={() => setIsCollapsed(!isCollapsed)}
             >
-                <Icon name="person" size={28} color="#333" />
+                <Icon name="ios-card-outline" size={28} color="#333" />
                 <View style={{marginLeft: 20}} />
-                <Heading3 text={props.item['NAMA_KLIEN']} />
+                <Heading3 text="2019081600000001" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <View style={textStatus == 'Aktif'? styles.btnStateActive : styles.btnStateNonActive}>
-                        <Heading3 text={textStatus} color={textColor} />
+                    <View style={styles.btnState}>
+                        <Heading3 text="Aktif" color="#0585FB" />
                         {
                             isCollapsed?
-                            <Icon name="chevron-forward" color={textColor} size={16} />
+                            <Icon name="chevron-forward" color="#0585FB" size={16} />
                             :
-                            <Icon name="chevron-down" color={textColor} size={16} />
+                            <Icon name="chevron-down" color="#0585FB" size={16} />
                         }
                     </View>
                 </View>
                 <Popover
-                    popoverStyle={styles.popover}
-                    isVisible={showPopover}
                     onRequestClose={() => setShowPopover(false)}
+                    isVisible={showPopover}
+                    popoverStyle={styles.popover}
                     from={(
-                        <TouchableOpacity style={styles.itemDetailMenu} onPress={() => setShowPopover(true)} >
+                        <TouchableOpacity onPress={() => setShowPopover(true)} style={styles.itemDetailMenu} >
                             <Icon name="ellipsis-vertical" size={16} color="#333" />
                         </TouchableOpacity>
                     )}
                 >
                     <View style={styles.popoverMenu}>
-                        <TouchableOpacity onPress={() => screenNavigate('KlienEditScreen', props.item['ID_KLIEN'])}>
+                        <TouchableOpacity onPress={() => screenNavigate('NPengirimanEditScreen')}>
                             <Icon name="ios-pencil" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                         <View style={{marginRight: 20}} />
+                        <TouchableOpacity onPress={() => screenNavigate('NPengirimanEditSetBarangScreen')}>
+                            <Icon name="ios-cube" color="#7F43D6" size={16} />
+                        </TouchableOpacity>
+                        <View style={{marginRight: 20}} />
                         <TouchableOpacity>
-                            <Icon name="ios-bookmark" color="#7F43D6" size={16} />
+                            <Icon name="print" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                     </View>
                 </Popover>
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed} style={styles.itemDetailBox}>
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Telepon" color="#CBCBCB" />
+                <Paragraph text="No Pemesanan" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text={props.item['TELP_KLIEN']} />
+                    <Paragraph text="089794875323" />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Alamat" color="#CBCBCB" />
+                <Paragraph text="Uang Muka" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text={props.item['ALAMAT_KLIEN']} />
+                    <Paragraph text="Rp. 20000" />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Email" color="#CBCBCB" />
+                <Paragraph text="Biaya" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text={props.item['EMAIL_KLIEN']} />
+                    <Paragraph text="Rp. 200000" />
+                </View>
+            </View>
+            <View style={{marginTop: 15}} />
+            <View style={styles.itemDetailSection}>
+                <Paragraph text="Deskripsi" color="#CBCBCB" />
+                <View style={{flex: 1, alignItems: 'flex-end'}}>
+                    <Paragraph text="Untuk Itu" />
                 </View>
             </View>
         </Collapsible>
@@ -127,18 +124,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 10
     },
-    btnStateActive: {
+    btnState: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#C4E3FF',
-        borderRadius: 5,
-        paddingVertical: 10,
-        paddingHorizontal: 30
-    },
-    btnStateNonActive: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#FFC4C4',
+        backgroundColor: "#C4E3FF",
         borderRadius: 5,
         paddingVertical: 10,
         paddingHorizontal: 30
@@ -156,11 +145,11 @@ const styles = StyleSheet.create({
     },
     popover: {
         borderRadius: 10
-    },  
+    },
     popoverMenu: {
         flexDirection: 'row',
         margin: 20
     }
 })
 
-export default ListKlienMenu
+export default ListNPengirimanMenu

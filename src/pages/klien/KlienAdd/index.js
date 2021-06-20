@@ -1,21 +1,88 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { Alert, StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import { useRecoilValue } from 'recoil'
 import ButtonSecondary from '../../../components/atoms/buttons/ButtonSecondary'
 import ButtonSubmit from '../../../components/atoms/buttons/ButtonSubmit'
 import BasicField from '../../../components/atoms/forms/BasicField'
+import NumberField from '../../../components/atoms/forms/NumberField'
+import Loader from '../../../components/atoms/Loader'
+import { baseUrl } from '../../../config/Recoil'
 
 const KlienAdd = () => {
+    const [klien, setKlien] = useState({
+        nama: '',
+        telepon: '',
+        email: '',
+        alamat: ''
+    })
+    const [isLoading, setIsLoading] = useState(false)
+    const recBaseUrl                = useRecoilValue(baseUrl)
+    const navigation                = useNavigation()
+
+    onChangeValue = (inputName, val) => {
+        setKlien({
+            ...klien,
+            [inputName] : val
+        })
+    }
+
+    const postApiKlien = () => {
+        setIsLoading(true)
+        axios({
+            url: `${recBaseUrl}/api/klien/tambah/`,
+            method: 'post',
+            data: klien
+        }).then(res => {
+            setIsLoading(false)
+            if(res.data.status){
+                Alert.alert(
+                    'Info',
+                    'Data berhasil disimpan', [
+                        {text: 'OK', onPress: () => navigation.replace('KlienScreen')}
+                    ]
+                )
+            }else{
+                alert(res.data.message)
+            }
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setIsLoading(false)
+        })
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.content}>
-                <BasicField label="Nama" />
+                {
+                    isLoading && <Loader />
+                }
+                <BasicField 
+                    label="Nama" 
+                    onChangeValue={onChangeValue} 
+                    inputName="nama" 
+                />
                 <View style={{marginTop: 20}} />
-                <BasicField label="No. Telp" />
+                <NumberField 
+                    label="No. Telp" 
+                    onChangeValue={onChangeValue} 
+                    inputName="telepon" 
+                />
                 <View style={{marginTop: 20}} />
-                <BasicField label="Email" />
+                <BasicField 
+                    label="Email" 
+                    onChangeValue={onChangeValue} 
+                    inputName="email" 
+                />
                 <View style={{marginTop: 20}} />
-                <BasicField label="Alamat Rumah" />
+                <BasicField 
+                    label="Alamat Rumah" 
+                    onChangeValue={onChangeValue} 
+                    inputName="alamat"     
+                />
             </ScrollView>
             <View style={styles.footer}>
                 <View style={styles.footerSection}>
@@ -23,7 +90,7 @@ const KlienAdd = () => {
                 </View>
                 <View style={{marginRight: 20}} />
                 <View style={styles.footerSection}>
-                    <ButtonSubmit title="Simpan" />
+                    <ButtonSubmit title="Simpan" onPress={() => postApiKlien()} />
                 </View>
             </View>
         </View>

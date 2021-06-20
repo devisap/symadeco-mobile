@@ -1,13 +1,25 @@
-import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import { useNavigation, useRoute } from '@react-navigation/native'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import { useRecoilValue } from 'recoil'
 import ButtonSecondary from '../../../components/atoms/buttons/ButtonSecondary'
 import ButtonSubmit from '../../../components/atoms/buttons/ButtonSubmit'
 import BasicField from '../../../components/atoms/forms/BasicField'
+import { baseUrl } from '../../../config/Recoil'
 
 const KlienEdit = () => {
-    const navigation = useNavigation()
+    const [klien, setKlien] = useState({})
+    const navigation    = useNavigation()
+    const route         = useRoute()
+    const recBaseUrl    = useRecoilValue(baseUrl)
+
+    useEffect(() => {
+    }, [])
+
+    const getApiKlien = () => {
+    }
 
     return (
         <View style={styles.container}>

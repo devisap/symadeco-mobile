@@ -11,7 +11,8 @@ import {
     PemasukanEdit, Pengeluaran, PengeluaranAdd,
     PengeluaranEdit, SOP, SOPAdd, SOPEdit,
     NPembayaran, NPembayaranAdd, NPembayaranSetBarang,
-    NPembayaranEdit, NPembayaranEditSetBarang
+    NPembayaranEdit, NPembayaranEditSetBarang, NPengiriman,
+    NPengirimanAdd, NPengirimanEdit, NPengirimanSetBarang, NPengirimanEditSetBarang
 } from '../../pages'
 import { Image, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -94,6 +95,7 @@ const MyDrawer = ({ navigation }) => {
             <Drawer.Screen name="PengeluaranScreen" component={PengeluaranStack} />
             <Drawer.Screen name="SOPScreen" component={SOPStack} />
             <Drawer.Screen name="NPembayaranScreen" component={NPembayaranStack} />
+            <Drawer.Screen name="NPengirimanScreen" component={NPengirimanStack} />
         </Drawer.Navigator>
     )
 }
@@ -177,9 +179,11 @@ const CustomMyDrawer = props => {
                     onPress={() => screenNavigate('NPembayaranScreen')}
                 />
                 <DrawerItem
+                    focused={currentScreen == 'NPengirimanScreen' ? true : false}
                     activeTintColor="#7F43D6"
                     label="Nota Pengiriman"
                     labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14, paddingLeft: 52}}
+                    onPress={() => screenNavigate('NPengirimanScreen')}
                 />
                 <DrawerItem
                     focused={currentScreen == 'SOPScreen' ? true : false}
@@ -516,6 +520,59 @@ const NPembayaranStack = ({ navigation }) => {
             <Stack.Screen 
                 name="NPembayaranEditSetBarangScreen" 
                 component={NPembayaranEditSetBarang} 
+                options={{
+                    title: 'Atur Ulang Barang'
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
+const NPengirimanStack = ({ navigation }) => {
+    return (
+        <Stack.Navigator
+            screenOptions={{
+                headerTitleStyle: {fontFamily: 'Causten-Bold', color: '#333'},
+            }}
+        >
+            <Stack.Screen 
+                name="NPengirimanScreen" 
+                component={NPengiriman}
+                options={{
+                    headerShown: true,
+                    title: "Nota Pengiriman",
+                    headerLeft: () => (
+                        <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
+                    ),
+                    headerRight: () => (
+                        <HeaderUserProfile />
+                    )
+                }}
+             />
+            <Stack.Screen 
+                name="NPengirimanAddScreen" 
+                component={NPengirimanAdd} 
+                options={{
+                    title: 'Tambah Nota Pengiriman'
+                }}
+            />
+            <Stack.Screen 
+                name="NPengirimanEditScreen" 
+                component={NPengirimanEdit} 
+                options={{
+                    title: 'Edit Nota Pengiriman'
+                }}
+            />
+            <Stack.Screen 
+                name="NPengirimanSetBarangScreen" 
+                component={NPengirimanSetBarang} 
+                options={{
+                    title: 'Atur Barang'
+                }}
+            />
+            <Stack.Screen 
+                name="NPengirimanEditSetBarangScreen" 
+                component={NPengirimanEditSetBarang} 
                 options={{
                     title: 'Atur Ulang Barang'
                 }}

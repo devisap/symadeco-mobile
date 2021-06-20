@@ -1,13 +1,35 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
+import { useRecoilValue } from 'recoil'
 import ButtonPrimaryIcon from '../../../components/atoms/buttons/ButtonPrimaryIcon'
 import FilterStatus from '../../../components/atoms/filters/FilterStatus'
 import SearchBox from '../../../components/atoms/SearchBox'
 import ListKlienMenu from '../../../components/organisms/ListKlienMenu'
+import { baseUrl } from '../../../config/Recoil'
 
 const Klien = ({ navigation }) => {
+    const [kliens, setKliens]   = useState([])
+    const recBaseUrl            = useRecoilValue(baseUrl)
+
+    useEffect(() => {
+        getApiListKlien()
+    }, [])
+
+    const getApiListKlien = () => {
+        axios({
+            url: `${recBaseUrl}/api/klien/`,
+            method: 'get'
+        }).then(res => {
+            setKliens(res.data.data)
+            console.log(res.data.data);
+        }).catch(err => {
+
+        })
+    }
+
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.searchBox}>
                     <SearchBox />
@@ -23,9 +45,9 @@ const Klien = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.content}>
-                <ListKlienMenu />
+                <ListKlienMenu listSource={kliens} />
             </View>
-        </ScrollView>
+        </View>
     )
 }
 

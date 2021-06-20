@@ -1,18 +1,23 @@
-import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 import ButtonSecondary from '../../../components/atoms/buttons/ButtonSecondary'
 import ButtonSubmit from '../../../components/atoms/buttons/ButtonSubmit'
-import BasicField from '../../../components/atoms/forms/BasicField'
 import DropdownSearchField from '../../../components/atoms/forms/DropdownField'
+import ImageField from '../../../components/atoms/forms/ImageField'
+import ImageCropPicker from 'react-native-image-crop-picker'
+import { useNavigation } from '@react-navigation/native'
+import BasicField from '../../../components/atoms/forms/BasicField'
 
-const SKKEdit = () => {
+const NPengirimanEdit = () => {
     const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.content}>
-                <DropdownSearchField label="No Pemasanan" />
-                <View style={{marginBottom: 200}} />
+                <DropdownSearchField label="No Pemesanan" />
+                <View style={{marginTop: 20}} />
+                <BasicField label="Deskripsi" />
+                <View style={{marginBottom: 20}} />
             </ScrollView>
             <View style={styles.footer}>
                 <View style={styles.footerSection}>
@@ -20,7 +25,7 @@ const SKKEdit = () => {
                 </View>
                 <View style={{marginRight: 20}} />
                 <View style={styles.footerSection}>
-                    <ButtonSubmit title="Simpan" />
+                    <ButtonSubmit title="Selanjutnya" onPress={() => navigation.navigate('NPengirimanSetBarangScreen')} />
                 </View>
             </View>
         </View>
@@ -47,4 +52,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default SKKEdit
+export default NPengirimanEdit

@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput } from 'react-native'
 
 const BasicField = props => {
+    const [val, setVal] = useState('')
+
+    useEffect(() => {
+        props.onChangeValue && props.onChangeValue(props.inputName, val)
+    }, [val])
+
     return (
         <>
             <Text style={styles.label}>{props.label? props.label : 'Label'}</Text>
@@ -9,6 +15,7 @@ const BasicField = props => {
                 placeholder={props.label? props.label : 'Label'}
                 placeholderTextColor="#CBCBCB"
                 style={styles.inputField}
+                onChangeText={text => setVal(text)}
             />
         </>
     )

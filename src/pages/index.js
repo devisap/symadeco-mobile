@@ -23,6 +23,11 @@ import NPembayaranAdd from './nPembayaran/NPembayaranAdd'
 import NPembayaranEdit from './nPembayaran/NPembayaranEdit'
 import NPembayaranSetBarang from './nPembayaran/NPembayaranSetBarang'
 import NPembayaranEditSetBarang from './nPembayaran/NPembayaranEditSetBarang'
+import NPengiriman from './nPengiriman/NPengiriman'
+import NPengirimanAdd from './nPengiriman/NPengirimanAdd'
+import NPengirimanEdit from './nPengiriman/NPengirimanEdit'
+import NPengirimanSetBarang from './nPengiriman/NPengirimanSetBarang'
+import NPengirimanEditSetBarang from './nPengiriman/NPengirimanEditSetBarang'
 
 export {
     SplashScreen, Login, Dashboard, Pemesanan,
@@ -30,5 +35,6 @@ export {
     SKK, SKKAdd, SKKEdit, Pemasukan, PemasukanAdd,
     PemasukanEdit, Pengeluaran, PengeluaranAdd, PengeluaranEdit,
     SOP, SOPAdd, SOPEdit, NPembayaran, NPembayaranAdd, NPembayaranSetBarang,
-    NPembayaranEdit, NPembayaranEditSetBarang
+    NPembayaranEdit, NPembayaranEditSetBarang, NPengiriman, NPengirimanAdd,
+    NPengirimanEdit, NPengirimanSetBarang, NPengirimanEditSetBarang
 }

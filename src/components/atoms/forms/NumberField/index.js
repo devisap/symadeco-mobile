@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, TextInput } from 'react-native'
 
 const NumberField = props => {
+    const [val, setVal] = useState('')
+
+    useEffect(() => {
+        props.onChangeValue && props.onChangeValue(props.inputName, val)
+    }, [val])
+
     return (
         <>
             <Text style={styles.label}>{props.label? props.label : 'Label'}</Text>
@@ -10,6 +16,7 @@ const NumberField = props => {
                 placeholderTextColor="#CBCBCB"
                 style={styles.inputField}
                 keyboardType="number-pad"
+                onChangeText={text => setVal(text)}
             />
         </>
     )
