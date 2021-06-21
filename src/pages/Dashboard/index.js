@@ -9,9 +9,8 @@ import ListPemesanan from '../../components/organisms/ListPemesanan'
 import ButtonSubmit from '../../components/atoms/buttons/ButtonSubmit'
 import ListKlien from '../../components/organisms/ListKlien'
 import axios from 'axios'
-import { baseUrl } from '../../config/Recoil'
-import { useRecoilValue } from 'recoil'
 import SkeletonPlaceHolder from 'react-native-skeleton-placeholder'
+import { useSelector } from 'react-redux'
 const Dashboard = () => {
     const [stats, setStats] = useState({
         jmlPesanan: 0,
@@ -21,8 +20,12 @@ const Dashboard = () => {
     })
     const [listSrcPemesanan, setListSrcPemesanan] = useState([])
     const [listSrcKlien, setListSrcKlien] = useState([])
-    const [isFetched, setIsFetched] = useState(false)
-    const recBaseUrl = useRecoilValue(baseUrl)
+    
+    const [statsFetched, setStatsFetched] = useState(false)
+    const [pemesananFetched, setPemesananFetched] = useState(false)
+    const [klienFetched, setKlienFetched] = useState(false)
+    
+    const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
 
     useEffect(() => {
         getApiStats()
@@ -31,9 +34,8 @@ const Dashboard = () => {
     }, [])
 
     const getApiStats = () => {
-        setIsFetched(false)
         axios({
-            url: `${recBaseUrl}/api/dashboard/jumlah`,
+            url: `${gBaseUrl}/api/dashboard/jumlah`,
             method: 'get'
         }).then(res => {
             setStats({
@@ -45,30 +47,43 @@ const Dashboard = () => {
         }).catch(err => {
             
         }).finally(() => {
-            setIsFetched(true)
+            setStatsFetched(true)
         })
     }
 
     const getApiListPemesanan = () => {
         axios({
-            url: `${recBaseUrl}/api/dashboard/daftarpemesanan`,
+            url: `${gBaseUrl}/api/dashboard/daftarpemesanan`,
             method: 'get'
         }).then(res => {
-            setListSrcPemesanan(res.data.data)
+            let lst = res.data.data.map( (obj, index) => ( 
+                <View key={index}>
+                    <ListPemesanan item={obj} /> 
+                </View>
+            ))
+            setListSrcPemesanan(lst)
         }).catch(err => {
 
+        }).finally(() => {
+            setPemesananFetched(true)
         })
     }
 
     const getApiListKlien = () => {
         axios({
-            url: `${recBaseUrl}/api/dashboard/daftarklien`,
+            url: `${gBaseUrl}/api/dashboard/daftarklien`,
             method: 'get',
         }).then(res => {
-            setListSrcKlien(res.data.data)
-            console.log(res.data.data);
+            let lst = res.data.data.map( (obj, index) => ( 
+                <View key={index}>
+                    <ListKlien item={obj} /> 
+                </View>
+            ))
+            setListSrcKlien(lst)
         }).catch(err => {
             
+        }).finally(() => {
+            setKlienFetched(true)
         })
     }
 
@@ -76,7 +91,7 @@ const Dashboard = () => {
         <ScrollView style={styles.container}>
             <View style={styles.statBox}>
                 {
-                    isFetched?
+                    statsFetched?
                     <>
                         <View style={styles.statAllBox}>
                             <View style={styles.statAllSection1}>
@@ -111,25 +126,53 @@ const Dashboard = () => {
                     </SkeletonPlaceHolder>
                 }
             </View>
-            <View style={styles.content} nestedScrollEnabled={true}>
+            <View style={styles.content}>
                 <View style={styles.listPemesananBox}>
-                    <Heading1 text="Daftar Pemesanan" color="#7F43D6" />
-                    <View style={styles.listPemesananContent}>
-                        <ListPemesanan listSource={listSrcPemesanan} />
-                    </View>
-                    <View style={styles.btnSubmitBox}>
-                        <ButtonSubmit title="Selengkapnya" />
-                    </View>
+                    {
+                        pemesananFetched?
+                        <>
+                            <Heading1 text="Daftar Pemesanan" color="#7F43D6" />
+                            <View style={styles.listPemesananContent}>
+                                { listSrcPemesanan }
+                            </View>
+                            <View style={styles.btnSubmitBox}>
+                                <ButtonSubmit title="Selengkapnya" />
+                            </View>
+                        </>
+                        :
+                        <SkeletonPlaceHolder>
+                            <SkeletonPlaceHolder.Item width={'100%'} height={30} borderRadius={10} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={20} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={60} borderRadius={10} marginVertical={40} />
+                        </SkeletonPlaceHolder>
+                    }
                 </View>
                 <View style={{marginTop: 20}} />
                 <View style={styles.listPemesananBox}>
-                    <Heading1 text="Daftar Klien" color="#7F43D6" />
-                    <View style={styles.listPemesananContent}>
-                        <ListKlien listSource={listSrcKlien} />
-                    </View>
-                <View style={styles.btnSubmitBox}>
-                    <ButtonSubmit title="Selengkapnya" />
-                </View>
+                    {
+                        klienFetched?
+                        <>
+                            <Heading1 text="Daftar Klien" color="#7F43D6" />
+                            <View style={styles.listPemesananContent}>
+                                { listSrcKlien }
+                            </View>
+                        <View style={styles.btnSubmitBox}>
+                            <ButtonSubmit title="Selengkapnya" />
+                        </View>
+                        </>
+                        :
+                        <SkeletonPlaceHolder>
+                            <SkeletonPlaceHolder.Item width={'100%'} height={30} borderRadius={10} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={20} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceHolder.Item width={'100%'} height={60} borderRadius={10} marginVertical={40} />
+                        </SkeletonPlaceHolder>
+                    }
                 </View>
             </View>
         </ScrollView>

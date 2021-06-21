@@ -14,10 +14,6 @@ const SOPAdd = () => {
     })
     const navigation = useNavigation()
 
-    useEffect(() => {
-        console.log(dataSOP)
-    }, [dataSOP])
-
     onChangeValue = (inputName, val) => {
         setDataSOP({
             ...dataSOP,

@@ -22,7 +22,7 @@ const DateTimeField = props => {
         }
 
         if(mode == 'time'){
-            console.log(currentDate)
+            (currentDate)
         }
     };
 

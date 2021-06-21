@@ -3,13 +3,12 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Alert, StyleSheet, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { useRecoilValue } from 'recoil'
+import { useSelector } from 'react-redux'
 import ButtonSecondary from '../../../components/atoms/buttons/ButtonSecondary'
 import ButtonSubmit from '../../../components/atoms/buttons/ButtonSubmit'
 import BasicField from '../../../components/atoms/forms/BasicField'
 import NumberField from '../../../components/atoms/forms/NumberField'
 import Loader from '../../../components/atoms/Loader'
-import { baseUrl } from '../../../config/Recoil'
 
 const KlienAdd = () => {
     const [klien, setKlien] = useState({
@@ -19,8 +18,8 @@ const KlienAdd = () => {
         alamat: ''
     })
     const [isLoading, setIsLoading] = useState(false)
-    const recBaseUrl                = useRecoilValue(baseUrl)
     const navigation                = useNavigation()
+    const gBaseUrl                  = useSelector(state => state.BaseUrlReducer.baseUrl)
 
     onChangeValue = (inputName, val) => {
         setKlien({
@@ -32,7 +31,7 @@ const KlienAdd = () => {
     const postApiKlien = () => {
         setIsLoading(true)
         axios({
-            url: `${recBaseUrl}/api/klien/tambah/`,
+            url: `${gBaseUrl}/api/klien/tambah/`,
             method: 'post',
             data: klien
         }).then(res => {

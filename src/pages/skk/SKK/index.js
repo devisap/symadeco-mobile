@@ -1,12 +1,37 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
+import { useSelector } from 'react-redux'
 import ButtonPrimaryIcon from '../../../components/atoms/buttons/ButtonPrimaryIcon'
 import SearchBox from '../../../components/atoms/SearchBox'
 import ListSKKMenu from '../../../components/organisms/ListSKKMenu'
+import SkeletonPlaceHolder from 'react-native-skeleton-placeholder'
 
 const SKK = ({ navigation }) => {
+    const [SKKFetched, setSKKFetched] = useState(false)
+    const [SKKs, setSKKs] = useState([])
+    const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
+    
+    useEffect(() => {
+        getApiSKK()
+    }, [])
+
+    const getApiSKK = () => {
+        setSKKFetched(false)
+        axios({
+            url: `${gBaseUrl}/api/skk`,
+            method: 'get'
+        }).then(res => {
+            setSKKs(res.data.data)
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setSKKFetched(true)
+        })
+    }
+
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.searchBox}>
                     <SearchBox />
@@ -18,9 +43,30 @@ const SKK = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.content}>
-                <ListSKKMenu />
+                {
+                    SKKFetched?
+                    <ListSKKMenu listSource={SKKs} />
+                    :
+                    <SkeletonPlaceHolder>
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={20} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                    </SkeletonPlaceHolder>
+                }
             </View>
-        </ScrollView>
+        </View>
     )
 }
 

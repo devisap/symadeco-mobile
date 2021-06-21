@@ -1,16 +1,17 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
-import { useRecoilValue } from 'recoil'
+import { useSelector } from 'react-redux'
 import ButtonPrimaryIcon from '../../../components/atoms/buttons/ButtonPrimaryIcon'
 import FilterStatus from '../../../components/atoms/filters/FilterStatus'
 import SearchBox from '../../../components/atoms/SearchBox'
 import ListKlienMenu from '../../../components/organisms/ListKlienMenu'
-import { baseUrl } from '../../../config/Recoil'
+import SkeletonPlaceHolder from 'react-native-skeleton-placeholder'
 
 const Klien = ({ navigation }) => {
     const [kliens, setKliens]   = useState([])
-    const recBaseUrl            = useRecoilValue(baseUrl)
+    const [kliensFetched, setKlienFetched] = useState(false)
+    const gBaseUrl  = useSelector(state => state.BaseUrlReducer.baseUrl)
 
     useEffect(() => {
         getApiListKlien()
@@ -18,13 +19,14 @@ const Klien = ({ navigation }) => {
 
     const getApiListKlien = () => {
         axios({
-            url: `${recBaseUrl}/api/klien/`,
+            url: `${gBaseUrl}/api/klien/`,
             method: 'get'
         }).then(res => {
             setKliens(res.data.data)
-            console.log(res.data.data);
         }).catch(err => {
 
+        }).finally(() => {
+            setKlienFetched(true)
         })
     }
 
@@ -45,7 +47,28 @@ const Klien = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.content}>
-                <ListKlienMenu listSource={kliens} />
+                {
+                    kliensFetched?
+                        <ListKlienMenu listSource={kliens} />
+                    :
+                    <SkeletonPlaceHolder>
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={20} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                    </SkeletonPlaceHolder>
+                }
             </View>
         </View>
     )

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker';
 
@@ -9,6 +9,17 @@ const DropdownSearchField = props => {
         {label: 'Apple', value: 'apple'},
         {label: 'Banana', value: 'banana'}
     ]);
+
+    useEffect(() => {
+        if(props.items){
+            const lst = props.items.map(obj => ({label: obj.NOMOR_PEMESANAN, value: obj.NOMOR_PEMESANAN}))
+            setItems(lst)
+        }
+    }, [])
+
+    useEffect(() => {
+        props.onChangeValue && props.onChangeValue(props.inputName, value)
+    }, [value])
 
     return (
         <View>
@@ -23,6 +34,7 @@ const DropdownSearchField = props => {
                 setOpen={setOpen}
                 setValue={setValue}
                 setItems={setItems}
+                onChangeItem={item => setValue(item.value)}
             />
         </View>
     );

@@ -10,31 +10,10 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder'
 import { getFullDate } from '../../../utils/DateFunction'
 
 const ListPemesanan = props => {
-    const [list, setList]   = useState([])
 
-    useEffect(() => {
-        props.listSource && setList(props.listSource)
-    })
-
-    return (
-        <FlatList 
-            data={list}
-            keyExtractor={item => item.id}
-            renderItem={({item}) => {
-                return (
-                    <View key={item.id}>
-                        <ListDetail item={item} />
-                    </View>
-                )
-            }}
-        />
-    )
-}
-
-const ListDetail = props => {
     const [isCollapsed, setIsCollapsed] = useState(true)
     const [textStatus, setTextStatus]   = useState('')
-    const [textColor, setTextColor]     = useState('')
+    const [textColor, setTextColor]     = useState('#333')
     const [bgColor, setBgColor]         = useState('')
 
     useEffect(() => {

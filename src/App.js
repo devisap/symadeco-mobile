@@ -42,7 +42,8 @@ import SKKAdd from './pages/skk/SKKAdd';
 import SOP from './pages/sop/SOP';
 import SOPAdd from './pages/sop/SOPAdd';
 import NPembayaranSetBarang from './pages/nPembayaran/NPembayaranSetBarang';
-import { RecoilRoot } from 'recoil';
+import { Provider } from 'react-redux';
+import store from './config/redux/Store';
 
 const App = () => {
   
@@ -52,9 +53,9 @@ const App = () => {
     // <Dashboard />
     // <Klien />
     // <KlienEdit />
-    <RecoilRoot>
+    <Provider store={store}>
       <Router />
-    </RecoilRoot>
+    </Provider>
     // <PemesananAdd />
     // <SKKAdd />
     // <Pemasukan />

@@ -18,12 +18,10 @@ const ListKlienMenu = props => {
     return (
         <FlatList 
             data={list}
-            keyExtractor={item => item.id}
+            keyExtractor={(item, index) => index}
             renderItem={({item}) => {
                 return (
-                    <View key={item.id}>
-                        <ListDetail item={item} />
-                    </View>
+                    <ListDetail item={item} />
                 )
             }}
         />
@@ -33,7 +31,7 @@ const ListKlienMenu = props => {
 const ListDetail = props => {
     const [isCollapsed, setIsCollapsed] = useState(true)
     const [textStatus, setTextStatus]   = useState('')
-    const [textColor, setTextColor]     = useState('')
+    const [textColor, setTextColor]     = useState('#333')
     const [showPopover, setShowPopover] = useState(false)
     const navigation = useNavigation()
     
