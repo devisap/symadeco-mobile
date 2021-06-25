@@ -1,13 +1,38 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
+import { useSelector } from 'react-redux'
 import ButtonPrimaryIcon from '../../../components/atoms/buttons/ButtonPrimaryIcon'
 import FilterDateRange from '../../../components/atoms/filters/FilterDateRange'
 import SearchBox from '../../../components/atoms/SearchBox'
 import ListPemasukanMenu from '../../../components/organisms/ListPemasukanMenu'
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder'
 
 const Pemasukan = ({ navigation }) => {
+    const [pemasukansFetched, setPemasukansFetched] = useState(false)
+    const [pemasukans, setPemasukans] = useState([])
+    const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
+
+    useEffect(() => {
+        getApiPemasukan()
+    }, [])
+
+    const getApiPemasukan = () => {
+        setPemasukansFetched(false)
+        axios({
+            url: `${gBaseUrl}/api/pemasukan`,
+            method: 'get'
+        }).then(res => {
+            setPemasukans(res.data.data)
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setPemasukansFetched(true)
+        })
+    }
+
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.searchBox}>
                     <SearchBox />
@@ -23,9 +48,25 @@ const Pemasukan = ({ navigation }) => {
                 </View>
             </View>
             <View style={styles.content}>
-                <ListPemasukanMenu />
+                {
+                    pemasukansFetched?
+                        <ListPemasukanMenu listSource={pemasukans} />
+                    :
+                        <SkeletonPlaceholder>
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={20} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                            <SkeletonPlaceholder.Item width={'100%'} height={50} borderRadius={10} marginTop={10} />
+                        </SkeletonPlaceholder>
+                }
             </View>
-        </ScrollView>
+        </View>
     )
 }
 

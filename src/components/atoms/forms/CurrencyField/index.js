@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 
 const CurrencyField = props => {
+    const [value, setValue] = useState('')
+
+    useEffect(() => {
+        props.value && setValue(props.value)
+    }, [])
+
+    useEffect(() => {
+        props.onChangeValue && props.onChangeValue(props.inputName, value)
+    }, [value])
+
     return (
         <>
             <Text style={styles.label}>{props.label? props.label : 'Label'}</Text>
@@ -11,6 +21,8 @@ const CurrencyField = props => {
                     placeholderTextColor="#CBCBCB"
                     style={styles.inputField}
                     keyboardType="number-pad"
+                    onChangeText={text => setValue(text)}
+                    defaultValue={value}
                 />
                 <Text style={styles.textCurr}>Rp.</Text>
             </View>

@@ -5,6 +5,10 @@ const BasicField = props => {
     const [val, setVal] = useState('')
 
     useEffect(() => {
+        props.value && setVal(props.value)
+    }, [])
+
+    useEffect(() => {
         props.onChangeValue && props.onChangeValue(props.inputName, val)
     }, [val])
 
@@ -16,6 +20,7 @@ const BasicField = props => {
                 placeholderTextColor="#CBCBCB"
                 style={styles.inputField}
                 onChangeText={text => setVal(text)}
+                defaultValue={val}
             />
         </>
     )

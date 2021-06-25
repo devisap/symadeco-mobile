@@ -36,7 +36,8 @@ const SKKAdd = () => {
             url: `${gBaseUrl}/api/skk/noPemesanan`,
             method: 'get'
         }).then(res => {
-            setPemesanans(res.data.data)
+            const lst = res.data.data.map(obj => ({label: obj.NOMOR_PEMESANAN, value: obj.NOMOR_PEMESANAN}))
+            setPemesanans(lst)
         }).catch(err => {
             alert(err)
         }).finally(() => {
@@ -45,7 +46,6 @@ const SKKAdd = () => {
     }
 
     const postApiSKK = () => {
-        console.log(SKK)
         setIsLoading(true)
         axios({
             url: `${gBaseUrl}/api/skk/tambah/`,
@@ -81,7 +81,7 @@ const SKKAdd = () => {
                     <DropdownSearchField label="No Pemesanan" items={pemesanans} onChangeValue={onChangeValue} inputName="noPesanan" />
                     :
                     <SkeletonPlaceHolder>
-                        <SkeletonPlaceHolder.Item width={'100%'} height={50} borderRadius={10} />
+                        <SkeletonPlaceHolder.Item width={'100%'} height={70} borderRadius={10} />
                     </SkeletonPlaceHolder>
                 }
                 <View style={{marginBottom: 200}} />

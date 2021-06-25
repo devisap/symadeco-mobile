@@ -11,10 +11,8 @@ const DropdownSearchField = props => {
     ]);
 
     useEffect(() => {
-        if(props.items){
-            const lst = props.items.map(obj => ({label: obj.NOMOR_PEMESANAN, value: obj.NOMOR_PEMESANAN}))
-            setItems(lst)
-        }
+        props.items && setItems(props.items)
+        props.value && setValue(props.value)
     }, [])
 
     useEffect(() => {
@@ -35,6 +33,7 @@ const DropdownSearchField = props => {
                 setValue={setValue}
                 setItems={setItems}
                 onChangeItem={item => setValue(item.value)}
+                defaultValue={value}
             />
         </View>
     );

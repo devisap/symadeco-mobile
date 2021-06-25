@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity } from 'react-native'
 import DateTimePicker from '@react-native-community/datetimepicker'
 import { getFullDate } from '../../../../utils/DateFunction'
@@ -7,14 +7,28 @@ const DateField = props => {
     const [date, setDate]               = useState(new Date());
     const [mode, setMode]               = useState('date');
     const [show, setShow]               = useState(false);
+    const [value, setValue]             = useState('')
 
     const [dateString, setDateString]   = useState('')
+
+    useEffect(() => {
+        if(props.value){
+            setValue(props.value)
+            setDate(new Date(props.value))
+            setDateString(getFullDate(new Date(props.value)))
+        }
+    }, [])
+
+    useEffect(() => {
+        props.onChangeValue && props.onChangeValue(props.inputName, value)
+    }, [value])
 
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
         setDate(currentDate);
         setDateString(getFullDate(currentDate))
+        setValue(`${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`)
     };
 
     const showMode = (currentMode) => {
