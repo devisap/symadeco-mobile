@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import {
     SplashScreen, Login, Dashboard,
     Klien, KlienAdd, KlienEdit,
-    Pemesanan, PemesananAdd, SKK,
+    Pemesanan, PemesananAdd, PemesananEdit, SKK,
     SKKAdd, SKKEdit, Pemasukan, PemasukanAdd,
     PemasukanEdit, Pengeluaran, PengeluaranAdd,
     PengeluaranEdit, SOP, SOPAdd, SOPEdit,
@@ -135,7 +135,7 @@ const CustomMyDrawer = props => {
                 labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14 }}
                 onPress={() => screenNavigate('KlienScreen')}
             />
-            <DrawerItem
+            {/* <DrawerItem
                 focused={currentScreen == 'TesScreen' ? true : false}
                 activeTintColor="#7F43D6"
                 label="Alur Keuangan"
@@ -144,7 +144,7 @@ const CustomMyDrawer = props => {
                 )}
                 labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14 }}
                 onPress={() => screenNavigate('KlienScreen')}
-            />
+            /> */}
             <View>
                 <DrawerItem
                     label="Proyek"
@@ -171,7 +171,7 @@ const CustomMyDrawer = props => {
                     labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14, paddingLeft: 52}}
                     onPress={() => screenNavigate('SKKScreen')}
                 />
-                <DrawerItem
+                {/* <DrawerItem
                     focused={currentScreen == 'NPembayaranScreen'? true : false}
                     activeTintColor="#7F43D6"
                     label="Nota Pembayaran"
@@ -191,7 +191,7 @@ const CustomMyDrawer = props => {
                     label="SOP"
                     labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14, paddingLeft: 52}}
                     onPress={() => screenNavigate('SOPScreen')}
-                />
+                /> */}
                 <DrawerItem
                     focused={currentScreen == 'PemasukanScreen'? true : false}
                     activeTintColor="#7F43D6"
@@ -207,7 +207,7 @@ const CustomMyDrawer = props => {
                     onPress={() => screenNavigate('PengeluaranScreen')}
                 />
             </Collapsible>
-            <DrawerItem
+            {/* <DrawerItem
                 focused={currentScreen == 'TesScreen' ? true : false}
                 activeTintColor="#7F43D6"
                 label="Laporan"
@@ -216,7 +216,7 @@ const CustomMyDrawer = props => {
                 )}
                 labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14 }}
                 onPress={() => screenNavigate('KlienScreen')}
-            />
+            /> */}
         </DrawerContentScrollView>
     )
 }
@@ -236,9 +236,6 @@ const DashboardStack = ({ navigation }) => {
                     title: "Dashboard",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />
@@ -261,9 +258,6 @@ const KlienStack = ({ navigation }) => {
                     title: "Klien",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />
@@ -303,9 +297,6 @@ const PemesananStack = ({ navigation }) => {
                     title: "Pemesanan",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />
@@ -314,6 +305,13 @@ const PemesananStack = ({ navigation }) => {
                 component={PemesananAdd} 
                 options={{
                     title: 'Tambah Pemesanan'
+                }}
+            />
+             <Stack.Screen 
+                name="PemesananEditScreen" 
+                component={PemesananEdit} 
+                options={{
+                    title: 'Edit Pemesanan'
                 }}
             />
         </Stack.Navigator>
@@ -335,9 +333,6 @@ const SKKStack = ({ navigation }) => {
                     title: "Surat Kontrak Kerja",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />
@@ -374,9 +369,6 @@ const PemasukanStack = ({ navigation }) => {
                     title: "Pemasukan",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />
@@ -412,9 +404,6 @@ const PengeluaranStack = ({ navigation }) => {
                     title: "Pengeluaran",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />
@@ -451,9 +440,6 @@ const SOPStack = ({ navigation }) => {
                     title: "SOP",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />
@@ -490,9 +476,6 @@ const NPembayaranStack = ({ navigation }) => {
                     title: "Nota Pembayaran",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />
@@ -543,9 +526,6 @@ const NPengirimanStack = ({ navigation }) => {
                     title: "Nota Pengiriman",
                     headerLeft: () => (
                         <HeaderNavigationDrawer onPress={() => navigation.openDrawer()} />
-                    ),
-                    headerRight: () => (
-                        <HeaderUserProfile />
                     )
                 }}
              />

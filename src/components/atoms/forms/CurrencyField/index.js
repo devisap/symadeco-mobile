@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
+import numberWithPoints from '../../../../utils/NumberPoints'
 
 const CurrencyField = props => {
     const [value, setValue] = useState('')

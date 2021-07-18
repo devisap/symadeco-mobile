@@ -6,6 +6,7 @@ import KlienAdd from './klien/KlienAdd'
 import KlienEdit from './klien/KlienEdit'
 import Pemesanan from './pemesanan/Pemesanan'
 import PemesananAdd from './pemesanan/PemesananAdd'
+import PemesananEdit from './pemesanan/PemesananEdit'
 import SKK from './skk/SKK'
 import SKKAdd from './skk/SKKAdd'
 import SKKEdit from './skk/SKKEdit'
@@ -31,7 +32,7 @@ import NPengirimanEditSetBarang from './nPengiriman/NPengirimanEditSetBarang'
 
 export {
     SplashScreen, Login, Dashboard, Pemesanan,
-    PemesananAdd, Klien, KlienAdd, KlienEdit,
+    PemesananAdd, PemesananEdit, Klien, KlienAdd, KlienEdit,
     SKK, SKKAdd, SKKEdit, Pemasukan, PemasukanAdd,
     PemasukanEdit, Pengeluaran, PengeluaranAdd, PengeluaranEdit,
     SOP, SOPAdd, SOPEdit, NPembayaran, NPembayaranAdd, NPembayaranSetBarang,

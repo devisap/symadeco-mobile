@@ -12,9 +12,12 @@ import SkeletonPlaceHolder from 'react-native-skeleton-placeholder'
 import CurrencyField from '../../../components/atoms/forms/CurrencyField'
 import Loader from '../../../components/atoms/Loader'
 import { useNavigation } from '@react-navigation/core'
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder'
+import { useRoute } from '@react-navigation/native'
 
-const PemesananAdd = () => {
+const PemesananEdit = () => {
     const [pemesanan, setPemesanan] = useState({
+        noPemesanan: '',
         idKlien: '',
         idPengguna: 2,
         idPaket: '',
@@ -26,17 +29,24 @@ const PemesananAdd = () => {
     })
     const [kliens, setKliens] = useState([])
     const [pakets, setPakets] = useState([])
+    const [isPemesananFetched, setIsPemesananFetched] = useState(false);
     const [isKlienFetched, setIsKlienFetched] = useState(false)
     const [isPaketFetched, setIsPaketFetched] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
     const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
+    const route = useRoute()
     const navigation = useNavigation()
 
     useEffect(() => {
         getApiKlien()
         getApiPaket()
     }, [])
+
+    useEffect(() => {
+        if(kliens && pakets)
+            getApiPemesanan()
+    }, [kliens, pakets])
 
     useEffect(() => {
         console.log(pemesanan);
@@ -59,8 +69,6 @@ const PemesananAdd = () => {
             setKliens(lst)
         }).catch(err => {
             alert(err)
-        }).finally(() => {
-            setIsKlienFetched(true)
         })
     }
 
@@ -74,23 +82,48 @@ const PemesananAdd = () => {
             setPakets(lst)
         }).catch(err => {
             alert(err)
-        }).finally(() => {
-            setIsPaketFetched(true)
         })
     }
 
-    const postApiPemesanan = () => {
+    const getApiPemesanan = () => {
+        setIsPemesananFetched(false)
+        axios({
+            url: `${gBaseUrl}/api/pemesanan/detail/${route.params.id}`,
+            method: 'get'
+        }).then(res => {
+            const data = res.data.data
+            setPemesanan({
+                noPemesanan: route.params.id,
+                idKlien: data.ID_KLIEN,
+                idPengguna: data.ID_PENGGUNA,
+                idPaket: data.ID_PAKET,
+                uangmuka: data.UANGMUKA_PEMESANAN,
+                biaya: data.BIAYA_PEMESANAN,
+                deskripsi: data.DESKRIPSI_PEMESANAN,
+                alamat: data.ALAMAT_PEMESANAN,
+                tanggal: data.TGLACARA_PEMESANAN
+            })
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setIsKlienFetched(true)
+            setIsPaketFetched(true)
+            setIsPemesananFetched(true)
+        })
+    }
+
+    const putApiPemesanan = () => {
         setIsLoading(true)
         axios({
-            url: `${gBaseUrl}/api/pemesanan/tambah`,
-            method: 'post',
+            url: `${gBaseUrl}/api/pemesanan/edit`,
+            method: 'put',
             data: pemesanan
         }).then(res => {
             setIsLoading(false)
             if(res.data.status){
                 Alert.alert(
                     'Info',
-                    'Data Berhasil disimpan', [
+                    'Data Berhasil diubah', [
                         {text: 'OK', onPress: () => navigation.replace('PemesananScreen')}
                     ]
                 )
@@ -115,6 +148,7 @@ const PemesananAdd = () => {
                             items={kliens}  
                             onChangeValue={onChangeValue}
                             inputName="idKlien"
+                            value={pemesanan.idKlien}
                         />
                     :
                         <SkeletonPlaceHolder>
@@ -129,42 +163,62 @@ const PemesananAdd = () => {
                             items={pakets} 
                             onChangeValue={onChangeValue}
                             inputName="idPaket"
+                            value={pemesanan.idPaket}
                         />
                     :
                         <SkeletonPlaceHolder>
                             <SkeletonPlaceHolder.Item width={"100%"} height={70} borderRadius={10} />
                         </SkeletonPlaceHolder>
                 }
-                <View style={{marginTop: 20}} />
-                <CurrencyField 
-                    label="Uang Muka" 
-                    onChangeValue={onChangeValue}
-                    inputName="uangmuka"
-                />
-                <View style={{marginTop: 20}} />
-                <CurrencyField 
-                    label="Biaya" 
-                    onChangeValue={onChangeValue}
-                    inputName="biaya"
-                />
-                <View style={{marginTop: 20}} />
-                <BasicField 
-                    label="Deskripsi" 
-                    onChangeValue={onChangeValue}
-                    inputName="deskripsi"
-                />
-                <View style={{marginTop: 20}} />
-                <BasicField 
-                    label="Alamat Acara" 
-                    onChangeValue={onChangeValue}
-                    inputName="alamat"
-                />
-                <View style={{marginTop: 20}} />
-                <DateField 
-                    label="Tanggal Acara"
-                    onChangeValue={onChangeValue}
-                    inputName="tanggal"
-                />
+                {
+                    isPemesananFetched?
+                    <>
+                        <View style={{marginTop: 20}} />
+                        <CurrencyField 
+                            label="Uang Muka" 
+                            onChangeValue={onChangeValue}
+                            inputName="uangmuka"
+                            value={pemesanan.uangmuka}
+                        />
+                        <View style={{marginTop: 20}} />
+                        <CurrencyField 
+                            label="Biaya" 
+                            onChangeValue={onChangeValue}
+                            inputName="biaya"
+                            value={pemesanan.biaya}
+                        />
+                        <View style={{marginTop: 20}} />
+                        <BasicField 
+                            label="Deskripsi" 
+                            onChangeValue={onChangeValue}
+                            inputName="deskripsi"
+                            value={pemesanan.deskripsi}
+                        />
+                        <View style={{marginTop: 20}} />
+                        <BasicField 
+                            label="Alamat Acara" 
+                            onChangeValue={onChangeValue}
+                            inputName="alamat"
+                            value={pemesanan.alamat}
+                        />
+                        <View style={{marginTop: 20}} />
+                        <DateField 
+                            label="Tanggal Acara"
+                            onChangeValue={onChangeValue}
+                            inputName="tanggal"
+                            value={pemesanan.tanggal}
+                        />
+                    </>
+                    :
+                    <SkeletonPlaceHolder>
+                        <SkeletonPlaceholder.Item width={'100%'} height={70} borderRadius={10} marginTop={30} />
+                        <SkeletonPlaceholder.Item width={'100%'} height={70} borderRadius={10} marginTop={30} />
+                        <SkeletonPlaceholder.Item width={'100%'} height={70} borderRadius={10} marginTop={30} />
+                        <SkeletonPlaceholder.Item width={'100%'} height={70} borderRadius={10} marginTop={30} />
+                        <SkeletonPlaceholder.Item width={'100%'} height={70} borderRadius={10} marginTop={30} />
+                    </SkeletonPlaceHolder>
+                }
+                
             </ScrollView>
             <View style={styles.footer}>
                 <View style={styles.footerSection}>
@@ -172,7 +226,7 @@ const PemesananAdd = () => {
                 </View>
                 <View style={{marginRight: 20}} />
                 <View style={styles.footerSection}>
-                    <ButtonSubmit title="Simpan" onPress={() => postApiPemesanan()} />
+                    <ButtonSubmit title="Simpan" onPress={() => putApiPemesanan()} />
                 </View>
             </View>
         </View>
@@ -199,4 +253,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PemesananAdd
+export default PemesananEdit

@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/core'
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { FlatList, StyleSheet, Text, TouchableOpacity, View, VirtualizedList } from 'react-native'
 import Collapsible from 'react-native-collapsible'
 import Popover from 'react-native-popover-view'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { useSelector } from 'react-redux'
 import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
@@ -33,6 +35,7 @@ const ListDetail = props => {
     const [textStatus, setTextStatus]   = useState('')
     const [textColor, setTextColor]     = useState('#333')
     const [showPopover, setShowPopover] = useState(false)
+    const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
     const navigation = useNavigation()
     
     useEffect(() => {
@@ -48,6 +51,14 @@ const ListDetail = props => {
     const screenNavigate = (screen, id) => {
         setShowPopover(false)
         navigation.navigate(screen, { id })
+    }
+    
+
+    const putApiStatus = () => {
+        alert(gBaseUrl)
+        // axios({
+
+        // })
     }
 
     return (
@@ -86,7 +97,7 @@ const ListDetail = props => {
                             <Icon name="ios-pencil" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                         <View style={{marginRight: 20}} />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => putApiStatus()}>
                             <Icon name="ios-bookmark" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                     </View>

@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { Picker } from '@react-native-picker/picker'
 import { useRef } from 'react'
 
-const FilterStatus = props => {
+const ChangeStatus = props => {
     const [selectedValue, setSelectedValue] = useState('Status')
 
     useEffect(() => {
@@ -59,4 +59,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default FilterStatus
+export default ChangeStatus

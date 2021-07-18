@@ -88,7 +88,7 @@ const ListDetail = props => {
                         </TouchableOpacity>
                         <View style={{marginRight: 20}} />
                         <TouchableOpacity>
-                            <Icon name="print" color="#7F43D6" size={16} />
+                            <Icon name="download" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                     </View>
                 </Popover>

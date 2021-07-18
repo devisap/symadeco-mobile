@@ -11,12 +11,17 @@ import ListKlien from '../../components/organisms/ListKlien'
 import axios from 'axios'
 import SkeletonPlaceHolder from 'react-native-skeleton-placeholder'
 import { useSelector } from 'react-redux'
+import VPemasukan from '../../assets/images/Pemasukan.svg'
+import VPengeluaran from '../../assets/images/Pengeluaran.svg'
+import numberWithPoints from '../../utils/NumberPoints'
 const Dashboard = () => {
     const [stats, setStats] = useState({
         jmlPesanan: 0,
         baru: 0,
         onProgress: 0,
-        selesai: 0
+        selesai: 0,
+        pemasukan: 0,
+        pengeluaran: 0
     })
     const [listSrcPemesanan, setListSrcPemesanan] = useState([])
     const [listSrcKlien, setListSrcKlien] = useState([])
@@ -39,13 +44,15 @@ const Dashboard = () => {
             method: 'get'
         }).then(res => {
             setStats({
-                jmlPesanan: res.data.data['jumlah pemesanan'],
-                baru: res.data.data['jumlah pemesanan baru'],
-                onProgress: res.data.data['jumlah pemesanan proses'],
-                selesai: res.data.data['jumlah pemesanan selesai']
+                jmlPesanan: res.data.data.jumlah_pemesanan,
+                baru: res.data.data.jumlah_pemesanan_baru,
+                onProgress: res.data.data.jumlah_pemesanan_proses,
+                selesai: res.data.data.jumlah_pemesanan_selesai,
+                pemasukan: res.data.data.jumlah_pemasukan[0].JML_PEMASUKAN,
+                pengeluaran: res.data.data.jumlah_pengeluaran[0].JML_PENGELUARAN
             })
         }).catch(err => {
-            
+            alert(err)
         }).finally(() => {
             setStatsFetched(true)
         })
@@ -116,6 +123,23 @@ const Dashboard = () => {
                             <View style={styles.statDetailItem('#fff')}>
                                 <Paragraph text="Selesai" color="#7F43D6" />
                                 <Text style={styles.statCount('#7F43D6')}>{ stats.selesai }</Text>
+                            </View>
+                        </View>
+                        <View style={styles.statKeuangan}>
+                            <View style={styles.statKeuanganItem}>
+                                <VPemasukan />
+                                <View style={{marginTop: 8}} />
+                                <Heading3 text={`Rp. ${numberWithPoints(stats.pemasukan)}`} />
+                                <View style={{marginTop: 4}} />
+                                <Heading3 text="Total Pemasukan" color="#CBCBCB" />
+                            </View>
+                            <View style={{marginHorizontal: 5}} />
+                            <View style={styles.statKeuanganItem}>
+                                <VPengeluaran />
+                                <View style={{marginTop: 8}} />
+                                <Heading3 text={`Rp. ${numberWithPoints(stats.pengeluaran)}`} />
+                                <View style={{marginTop: 4}} />
+                                <Heading3 text="Total Pengeluaran" color="#CBCBCB" />
                             </View>
                         </View>
                     </>
@@ -224,6 +248,17 @@ const styles = StyleSheet.create({
             justifyContent: 'space-between',
             padding: 15
         }
+    },
+    statKeuangan: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 20
+    },
+    statKeuanganItem: {
+        flex: 1, 
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        padding: 15
     },
     content: {
         marginTop: 20

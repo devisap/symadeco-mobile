@@ -91,7 +91,7 @@ const ListDetail = props => {
             </TouchableOpacity>
             <Collapsible collapsed={isCollapsed} style={styles.itemDetailBox}>
             <View style={styles.itemDetailSection}>
-                <Paragraph text="Tanggal Masuk" color="#CBCBCB" />
+                <Paragraph text="Tanggal Keluar" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
                     <Paragraph text={getFullDate(new Date(props.item.TGLMASUK_PENGELUARAN))} />
                 </View>

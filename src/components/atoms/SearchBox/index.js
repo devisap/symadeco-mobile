@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const SearchBox = () => {
+const SearchBox = props => {
+    const [value, setValue] = useState('')
+
+    useEffect(() => {
+        props.onChangeFilter && props.onChangeFilter(props.inputName, value)
+    }, [value])
+
     return (
         <>
             <TextInput 
                 placeholder="Cari"
                 placeholderTextColor="#CBCBCB"
                 style={styles.inputText}
+                onChangeText={text => setValue(text)}
+                defaultValue={value}
             />
             <Icon name="search" size={20} color="#CBCBCB" style={styles.inputIcon} />
         </>

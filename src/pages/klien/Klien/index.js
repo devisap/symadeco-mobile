@@ -11,11 +11,43 @@ import SkeletonPlaceHolder from 'react-native-skeleton-placeholder'
 const Klien = ({ navigation }) => {
     const [kliens, setKliens]   = useState([])
     const [kliensFetched, setKlienFetched] = useState(false)
+    const [filter, setFilter] = useState({
+        nama: '',
+        status: 0
+    })
     const gBaseUrl  = useSelector(state => state.BaseUrlReducer.baseUrl)
 
     useEffect(() => {
         getApiListKlien()
     }, [])
+
+    useEffect(() => {
+        getApiFilter()
+        console.log(filter);
+    }, [filter])
+
+    onChangeFilter = (inputName, value) => {
+        if(inputName === "status"){
+            switch (value) {
+                case "Status":
+                    value = 0
+                    break;
+                case "Aktif":
+                    value = 1
+                    break;
+                case "Tidak Aktif":
+                    value = 2
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        setFilter({
+            ...filter,
+            [inputName]: value
+        })
+    }
 
     const getApiListKlien = () => {
         axios({
@@ -28,17 +60,34 @@ const Klien = ({ navigation }) => {
         }).finally(() => {
             setKlienFetched(true)
         })
+    }    
+
+    const getApiFilter = () => {
+        setKlienFetched(false)
+        axios({
+            url: `${gBaseUrl}/api/klien/filter`,
+            method: 'get',
+            params: filter
+        }).then(res => {
+            if(res.data.status){
+                setKliens(res.data.data)
+            }
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setKlienFetched(true)
+        })
     }
 
     return (
         <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.searchBox}>
-                    <SearchBox />
+                    <SearchBox onChangeFilter={onChangeFilter} inputName="nama" />
                 </View>
                 <View style={styles.actionBox}>
                     <View style={styles.actionSection}>
-                        <FilterStatus />
+                        <FilterStatus onChangeFilter={onChangeFilter} inputName="status" />
                     </View>
                     <View style={{marginRight: 20}} />
                     <View style={styles.actionSection}>
