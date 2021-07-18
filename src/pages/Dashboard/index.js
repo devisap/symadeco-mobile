@@ -129,7 +129,7 @@ const Dashboard = () => {
                             <View style={styles.statKeuanganItem}>
                                 <VPemasukan />
                                 <View style={{marginTop: 8}} />
-                                <Heading3 text={`Rp. ${numberWithPoints(stats.pemasukan)}`} />
+                                <Heading3 text={`Rp. ${numberWithPoints(stats.pemasukan? stats.pemasukan : 0)}`} />
                                 <View style={{marginTop: 4}} />
                                 <Heading3 text="Total Pemasukan" color="#CBCBCB" />
                             </View>
@@ -137,7 +137,7 @@ const Dashboard = () => {
                             <View style={styles.statKeuanganItem}>
                                 <VPengeluaran />
                                 <View style={{marginTop: 8}} />
-                                <Heading3 text={`Rp. ${numberWithPoints(stats.pengeluaran)}`} />
+                                <Heading3 text={`Rp. ${numberWithPoints(stats.pengeluaran? stats.pengeluaran : 0)}`} />
                                 <View style={{marginTop: 4}} />
                                 <Heading3 text="Total Pengeluaran" color="#CBCBCB" />
                             </View>

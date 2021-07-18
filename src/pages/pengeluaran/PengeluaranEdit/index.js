@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     footer:  {
-        flex: 1,
         alignItems: 'flex-end',
         flexDirection: 'row',
         marginVertical: 20

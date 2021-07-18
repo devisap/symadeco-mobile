@@ -8,6 +8,9 @@ import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
 import { useNavigation } from '@react-navigation/core'
 import { getFullDate } from '../../../utils/DateFunction'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+import RNFetchBlob from 'rn-fetch-blob'
 
 const ListPemesananMenu = props => {
     const [list, setList] = useState([])
@@ -36,6 +39,7 @@ const ListDetail = props => {
     const [btnStyles, setBtnStyles]     = useState({})
     const [showPopover, setShowPopover] = useState(false)
     const navigation = useNavigation()
+    const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
 
     useEffect(() => {
         if(props.item['status'] == '0'){
@@ -78,6 +82,36 @@ const ListDetail = props => {
         navigation.navigate(screen, { id })
     }
 
+    const downloadDokumen = noPesan => {
+        axios({
+            url: `${gBaseUrl}/api/pemesanan/path/${noPesan}`,
+            method: 'get'
+        }).then(res => {
+            const fileName = res.data.data.link.split('/')[6]
+                const android = RNFetchBlob.android
+                let dirs = RNFetchBlob.fs.dirs
+                RNFetchBlob.config({
+                    fileCache : true,
+                    // android only options, these options be a no-op on IOS
+                    addAndroidDownloads : {
+                        useDownloadManager : true,
+                        title : fileName,
+                        description : `${fileName} berhasil terdownload`,
+                        mime : 'application/pdf',
+                        mediaScannable : true,
+                        notification : true,
+                        path : `${dirs.DownloadDir}/${fileName}`
+                    },
+                  })
+                  .fetch('GET', `${res.data.data.link}`)
+                  .then(res => {
+                    alert('Berhasil mendownload dokumen pemesanan!')
+                  })
+        }).catch(err => {
+            alert(err)
+        })
+    }
+
     return (
         <>
             <TouchableOpacity 
@@ -118,7 +152,7 @@ const ListDetail = props => {
                             <Icon name="ios-bookmark" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                         <View style={{marginRight: 20}} />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => downloadDokumen(props.item['id'])}>
                             <Icon name="download" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                     </View>

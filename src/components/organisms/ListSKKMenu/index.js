@@ -8,6 +8,9 @@ import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
 import { getFullDate } from '../../../utils/DateFunction'
+import { useSelector } from 'react-redux'
+import axios from 'axios'
+import RNFetchBlob from 'rn-fetch-blob'
 
 const ListSKKMenu = props => {
     const [list, setList] = useState([])
@@ -35,6 +38,7 @@ const ListDetail = props => {
     const [textColor, setTextColor]     = useState('#333')
     const [showPopover, setShowPopover] = useState(false)
     const navigation = useNavigation()
+    const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
 
     useEffect(() => {
         if(props.item['deleted_at']){
@@ -49,6 +53,36 @@ const ListDetail = props => {
     const screenNavigate = (screen, id) => {
         setShowPopover(false)
         navigation.navigate(screen, { id })
+    }
+
+    const downloadDokumen = noPesan => {
+        axios({
+            url: `${gBaseUrl}/api/skk/path/${noPesan}`,
+            method: 'get'
+        }).then(res => {
+            const fileName = res.data.data.link.split('/')[6]
+                const android = RNFetchBlob.android
+                let dirs = RNFetchBlob.fs.dirs
+                RNFetchBlob.config({
+                    fileCache : true,
+                    // android only options, these options be a no-op on IOS
+                    addAndroidDownloads : {
+                        useDownloadManager : true,
+                        title : fileName,
+                        description : `${fileName} berhasil terdownload`,
+                        mime : 'application/pdf',
+                        mediaScannable : true,
+                        notification : true,
+                        path : `${dirs.DownloadDir}/${fileName}`
+                    },
+                  })
+                  .fetch('GET', `${res.data.data.link}`)
+                  .then(res => {
+                    alert('Berhasil mendownload dokumen surat kontrak kerja!')
+                  })
+        }).catch(err => {
+            alert(err)
+        })
     }
 
     return (
@@ -87,7 +121,7 @@ const ListDetail = props => {
                             <Icon name="ios-pencil" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                         <View style={{marginRight: 20}} />
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => downloadDokumen(props.item['NOMOR_SKK'])}>
                             <Icon name="download" color="#7F43D6" size={16} />
                         </TouchableOpacity>
                     </View>
