@@ -8,6 +8,7 @@ import { getFullDate } from '../../../utils/DateFunction'
 import Heading2 from '../../atoms/typography/Heading2'
 import Heading3 from '../../atoms/typography/Heading3'
 import Paragraph from '../../atoms/typography/Paragraph'
+import numberWithPoints from '../../../utils/NumberPoints'
 
 const ListPengeluaranMenu = props => {
     const [list, setList] = useState([])
@@ -100,7 +101,7 @@ const ListDetail = props => {
             <View style={styles.itemDetailSection}>
                 <Paragraph text="Jumlah" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text={`Rp. ${props.item.JML_PENGELUARAN}`} />
+                    <Paragraph text={`Rp. ${numberWithPoints(props.item.JML_PENGELUARAN)}`} />
                 </View>
             </View>
             <View style={{marginTop: 15}} />

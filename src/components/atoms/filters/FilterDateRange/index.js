@@ -10,22 +10,25 @@ import Heading2 from '../../typography/Heading2'
 import Heading3 from '../../typography/Heading3'
 import DateTimePicker from '@react-native-community/datetimepicker'
 
-const FilterDateRange = () => {
+const FilterDateRange = props => {
     const [dateStart, setDateStart]               = useState(new Date())
     const [modeStart, setModeStart]               = useState('date')
     const [showStart, setShowStart]               = useState(false)
     const [dateStringStart, setDateStringStart]   = useState('')
+    const [valueStart, setValueStart]             = useState('')
     
     const [dateEnd, setDateEnd]               = useState(new Date())
     const [modeEnd, setModeEnd]               = useState('date')
     const [showEnd, setShowEnd]               = useState(false)
     const [dateStringEnd, setDateStringEnd]   = useState('')
+    const [valueEnd, setValueEnd]             = useState('')
 
     const onChangeStart = (event, selectedDate) => {
         const currentDate = selectedDate || date
         setShowStart(Platform.OS === 'ios')
         setDateStart(currentDate)
         setDateStringStart(getFullDate(currentDate))
+        setValueStart(`${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`)
     }
 
     const showModeStart = currentMode => {
@@ -43,6 +46,7 @@ const FilterDateRange = () => {
         setShowEnd(Platform.OS === 'ios')
         setDateEnd(currentDate)
         setDateStringEnd(getFullDate(currentDate))
+        setValueEnd(`${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`)
     }
 
     const showModeEnd = currentMode => {
@@ -54,9 +58,14 @@ const FilterDateRange = () => {
         showModeEnd('date')
     }
 
+    const onClose = () => {
+        props.onChangeDateRange && onChangeDateRange(valueStart, valueEnd)
+    }
+
     return (
         <Popover
             popoverStyle={styles.popover}
+            onRequestClose={() => onClose()}
             from={(
                 <TouchableOpacity activeOpacity={0.8} style={styles.buttonFilter}>
                     <Icon name="filter" size={24} color="#333" style={styles.btnIcon} />

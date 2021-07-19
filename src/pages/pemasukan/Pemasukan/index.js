@@ -11,11 +11,20 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder'
 const Pemasukan = ({ navigation }) => {
     const [pemasukansFetched, setPemasukansFetched] = useState(false)
     const [pemasukans, setPemasukans] = useState([])
+    const [filter, setFilter] = useState({
+        noPemasukan: '',
+        tglAwal: '',
+        tglAkhir: ''
+    })
     const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
 
     useEffect(() => {
         getApiPemasukan()
     }, [])
+
+    useEffect(() => {
+        getApiFilter()
+    }, [filter])
 
     const getApiPemasukan = () => {
         setPemasukansFetched(false)
@@ -31,15 +40,45 @@ const Pemasukan = ({ navigation }) => {
         })
     }
 
+    const getApiFilter = () => {
+        setPemasukansFetched(false)
+        axios({
+            url: `${gBaseUrl}/api/pemasukan/filter`,
+            method: 'get',
+            params: filter
+        }).then(res => {
+            setPemasukans(res.data.data)
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setPemasukansFetched(true)
+        })
+    }
+
+    onChangeFilter = (inputName, value) => {
+        setFilter({
+            ...filter,
+            [inputName]: value
+        })
+    }
+
+    onChangeDateRange = (tglAwal, tglAkhir) => {
+        setFilter({
+            ...filter,
+            ['tglAwal']: tglAwal,
+            ['tglAkhir']: tglAkhir
+        })
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.searchBox}>
-                    <SearchBox />
+                    <SearchBox inputName="noPemasukan" onChangeFilter={onChangeFilter} />
                 </View>
                 <View style={styles.actionBox}>
                     <View style={styles.actionSection}>
-                        <FilterDateRange />
+                        <FilterDateRange onChangeDateRange={onChangeDateRange} />
                     </View>
                     <View style={{marginHorizontal: 10}} />
                     <View style={styles.actionSection}>

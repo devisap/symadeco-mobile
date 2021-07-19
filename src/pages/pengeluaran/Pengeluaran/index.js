@@ -11,11 +11,21 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder'
 const Pengeluaran = ({ navigation }) => {
     const [pengeluaransFetched, setPengeluaransFetched] = useState(false)
     const [pengeluarans, setPengeluarans] = useState([])
+    const [filter, setFilter] = useState({
+        noPengeluaran: '',
+        tglAwal: '',
+        tglAkhir: ''
+    })
     const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
 
     useEffect(() => {
         getApiPengeluaran()
     }, [])
+
+    useEffect(() => {
+        console.log(filter);
+        getApiFilter()
+    }, [filter])
 
     const getApiPengeluaran = () => {
         setPengeluaransFetched(false)
@@ -30,16 +40,46 @@ const Pengeluaran = ({ navigation }) => {
             setPengeluaransFetched(true)
         })
     }
+
+    const getApiFilter = () => {
+        setPengeluaransFetched(false)
+        axios({
+            url: `${gBaseUrl}/api/pengeluaran/filter`,
+            method: 'get',
+            params: filter
+        }).then(res => {
+            setPengeluarans(res.data.data)
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setPengeluaransFetched(true)
+        })
+    }
+
+    onChangeFilter = (inputName, value) => {
+        setFilter({
+            ...filter,
+            [inputName]: value
+        })
+    }
+
+    onChangeDateRange = (tglAwal, tglAkhir) => {
+        setFilter({
+            ...filter,
+            ['tglAwal']: tglAwal,
+            ['tglAkhir']: tglAkhir
+        })
+    }
     
     return (
         <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.searchBox}>
-                    <SearchBox />
+                    <SearchBox inputName="noPengeluaran" onChangeFilter={onChangeFilter} />
                 </View>
                 <View style={styles.actionBox}>
                     <View style={styles.actionSection}>
-                        <FilterDateRange />
+                        <FilterDateRange onChangeDateRange={onChangeDateRange} />
                     </View>
                     <View style={{marginHorizontal: 10}} />
                     <View style={styles.actionSection}>

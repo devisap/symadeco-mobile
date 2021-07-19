@@ -85,7 +85,7 @@ const PengeluaranAdd = () => {
                     <>
                         <DropdownSearchField label="No Pemasanan" items={pemesanans} onChangeValue={onChangeValue} inputName="noPemesanan" />
                         <View style={{marginTop: 20}} />
-                        <DateField label="Tanggal Masuk" onChangeValue={onChangeValue} inputName={"tgl"} />
+                        <DateField label="Tanggal Keluar" onChangeValue={onChangeValue} inputName={"tgl"} />
                         <View style={{marginTop: 20}} />
                         <CurrencyField label="Jumlah" onChangeValue={onChangeValue} inputName={"jml"} />
                         <View style={{marginTop: 20}} />

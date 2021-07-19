@@ -109,7 +109,7 @@ const PengeluaranEdit = () => {
                         <>
                             <DropdownSearchField label="No Pemesanan" items={pemesanans} onChangeValue={onChangeValue} inputName="noPemesanan" value={pengeluaran.noPemesanan} />
                             <View style={{marginTop: 20}} />
-                            <DateField label="Tanggal Masuk" onChangeValue={onChangeValue} inputName="tgl" value={pengeluaran.tgl} />
+                            <DateField label="Tanggal Keluar" onChangeValue={onChangeValue} inputName="tgl" value={pengeluaran.tgl} />
                             <View style={{marginTop: 20}} />
                             <CurrencyField label="Jumlah" onChangeValue={onChangeValue} inputName="jml" value={pengeluaran.jml} />
                             <View style={{marginTop: 20}} />

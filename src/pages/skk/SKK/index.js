@@ -10,11 +10,18 @@ import SkeletonPlaceHolder from 'react-native-skeleton-placeholder'
 const SKK = ({ navigation }) => {
     const [SKKFetched, setSKKFetched] = useState(false)
     const [SKKs, setSKKs] = useState([])
+    const [filter, setFilter] = useState({
+        noSkk: ''
+    })
     const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
     
     useEffect(() => {
         getApiSKK()
     }, [])
+
+    useEffect(() => {
+        getApiFilter()
+    }, [filter])
 
     const getApiSKK = () => {
         setSKKFetched(false)
@@ -30,11 +37,33 @@ const SKK = ({ navigation }) => {
         })
     }
 
+    const getApiFilter = () => {
+        setSKKFetched(false)
+        axios({
+            url: `${gBaseUrl}/api/skk/filter`,
+            method: 'get',
+            params: filter
+        }).then(res => {
+            setSKKs(res.data.data)
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setSKKFetched(true)
+        })
+    }
+
+    onChangeFilter = (inputName, value) => {
+        setFilter({
+            ...filter, 
+            [inputName]: value
+        })
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.headerBox}>
                 <View style={styles.searchBox}>
-                    <SearchBox />
+                    <SearchBox onChangeFilter={onChangeFilter} inputName="noSkk" />
                 </View>
                 <View style={styles.actionBox}>
                     <View style={styles.actionSection}>

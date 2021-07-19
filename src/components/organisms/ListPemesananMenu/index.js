@@ -83,6 +83,7 @@ const ListDetail = props => {
     }
 
     const downloadDokumen = noPesan => {
+        setShowPopover(false)
         axios({
             url: `${gBaseUrl}/api/pemesanan/path/${noPesan}`,
             method: 'get'

@@ -11,6 +11,7 @@ import { getFullDate } from '../../../utils/DateFunction'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import RNFetchBlob from 'rn-fetch-blob'
+import numberWithPoints from '../../../utils/NumberPoints'
 
 const ListSKKMenu = props => {
     const [list, setList] = useState([])
@@ -56,6 +57,7 @@ const ListDetail = props => {
     }
 
     const downloadDokumen = noPesan => {
+        setShowPopover(false)
         axios({
             url: `${gBaseUrl}/api/skk/path/${noPesan}`,
             method: 'get'
@@ -145,7 +147,7 @@ const ListDetail = props => {
             <View style={styles.itemDetailSection}>
                 <Paragraph text="Biaya" color="#CBCBCB" />
                 <View style={{flex: 1, alignItems: 'flex-end'}}>
-                    <Paragraph text={`Rp. ${props.item['BIAYA_PEMESANAN']}`} />
+                    <Paragraph text={`Rp. ${props.item['BIAYA_PEMESANAN']? numberWithPoints(props.item['BIAYA_PEMESANAN']) : 0}`} />
                 </View>
             </View>
             <View style={{marginTop: 15}} />
