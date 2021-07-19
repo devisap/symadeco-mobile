@@ -39,7 +39,6 @@ const PemesananAdd = () => {
     }, [])
 
     useEffect(() => {
-        console.log(pemesanan);
     }, [pemesanan])
 
     onChangeValue = (inputName, val) => {

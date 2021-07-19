@@ -31,7 +31,6 @@ const Pemesanan = ({ navigation }) => {
         }).catch(err => {
             alert(err)
         }).finally(() => {
-            console.log(pemesanans);
             setPemesananIsFetched(true)
         })
     }

@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux'
 import VPemasukan from '../../assets/images/Pemasukan.svg'
 import VPengeluaran from '../../assets/images/Pengeluaran.svg'
 import numberWithPoints from '../../utils/NumberPoints'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const Dashboard = () => {
     const [stats, setStats] = useState({
         jmlPesanan: 0,
@@ -32,7 +33,7 @@ const Dashboard = () => {
     
     const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
 
-    useEffect(() => {
+    useEffect(async() => {
         getApiStats()
         getApiListPemesanan()
         getApiListKlien()

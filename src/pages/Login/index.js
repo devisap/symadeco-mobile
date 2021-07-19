@@ -1,27 +1,51 @@
+import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { PermissionsAndroid, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import { useSelector } from 'react-redux'
 import Logo from '../../assets/images/Logo.svg'
 import ButtonSubmit from '../../components/atoms/buttons/ButtonSubmit'
+import Loader from '../../components/atoms/Loader'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({ navigation }) => {
     const [userInptTintColor, setUserInptTintColor] = useState('#CBCBCB')
     const [passInptTintColor, setPassInptTintColor] = useState('#CBCBCB')
+    const [user, setUser] = useState({
+        username: '',
+        password: ''
+    })
+    const [isLoading, setIsLoading] = useState(false)
+    const gBaseUrl = useSelector(state => state.BaseUrlReducer.baseUrl)
 
-    useEffect(() => {
-        requestPermissions()      
-    }, [])
+    const postApiLogin = () => {
+        setIsLoading(true)
+        axios({
+            url: `${gBaseUrl}/api/user/login`,
+            method: 'post',
+            data: user
+        }).then(res => {
+            if(res.data.status){
+                asStoreData(res.data.data)
+                navigation.replace('DashboardScreen')
+            }else{
+                alert(res.data.message)
+            }
+        }).catch(err => {
+            alert(err)
+        }).finally(() => {
+            setIsLoading(false)
+        })
+    }
 
-    const requestPermissions = async () => {
-        try {
-          const granted = await PermissionsAndroid.requestMultiple(['android.permission.CAMERA', 'android.permission.WRITE_EXTERNAL_STORAGE']);
-        } catch (err) {
-          console.warn(err);
-        }
+    const asStoreData = async val => {
+        const jsonVal = JSON.stringify(val)
+        await AsyncStorage.setItem('USER', jsonVal)
     }
 
     return (
         <ScrollView style={styles.container}>
+            { isLoading && <Loader /> }
             <View style={styles.logoBox}>
                 <Logo width={170} height={70} />
             </View>
@@ -36,18 +60,31 @@ const Login = ({ navigation }) => {
                     style={styles.input(userInptTintColor)}
                     onFocus={() => setUserInptTintColor('#7F43D6')}
                     onBlur={() => setUserInptTintColor('#CBCBCB')}
+                    onChangeText={text => {
+                        setUser({
+                            ...user,
+                            ['username']: text
+                        })
+                    }}
                     />
                 <View style={{marginTop: 40}} />
                 <TextInput 
+                    secureTextEntry
                     placeholder="Password"
                     placeholderTextColor="#CBCBCB"
                     style={styles.input(passInptTintColor)}
                     onFocus={() => setPassInptTintColor('#7F43D6')}
                     onBlur={() => setPassInptTintColor('#CBCBCB')}
+                    onChangeText={text => {
+                        setUser({
+                            ...user,
+                            ['password']: text
+                        })
+                    }}
                 />
             </View>
             <View style={styles.btnSubmitBox}>
-                <ButtonSubmit title="Login" onPress={() => navigation.replace('DashboardScreen')} />
+                <ButtonSubmit title="Login" onPress={() => postApiLogin()} />
             </View>
         </ScrollView>
     )

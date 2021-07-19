@@ -23,7 +23,6 @@ const Klien = ({ navigation }) => {
 
     useEffect(() => {
         getApiFilter()
-        console.log(filter);
     }, [filter])
 
     onChangeFilter = (inputName, value) => {

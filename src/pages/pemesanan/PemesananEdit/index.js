@@ -49,7 +49,6 @@ const PemesananEdit = () => {
     }, [kliens, pakets])
 
     useEffect(() => {
-        console.log(pemesanan);
     }, [pemesanan])
 
     onChangeValue = (inputName, val) => {

@@ -29,7 +29,6 @@ const KlienEdit = () => {
     }, [])
 
     useEffect(() => {
-        console.log(klien);
     }, [klien])
 
     onChangeValue = (inputName, value) => {

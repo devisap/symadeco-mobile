@@ -14,10 +14,11 @@ import {
     NPembayaranEdit, NPembayaranEditSetBarang, NPengiriman,
     NPengirimanAdd, NPengirimanEdit, NPengirimanSetBarang, NPengirimanEditSetBarang
 } from '../../pages'
-import { Image, View } from 'react-native'
+import { Alert, Image, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Logo from '../../assets/images/Logo.svg'
 import Collapsible from 'react-native-collapsible'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Stack     = createStackNavigator()
 const Drawer    = createDrawerNavigator() 
@@ -107,6 +108,26 @@ const CustomMyDrawer = props => {
     const screenNavigate = screen => {
         setCurrentScreen(screen)
         props.navigation.navigate(screen)
+    }
+
+    const logOut = async() => {
+        Alert.alert(
+            'Konfirmasi',
+            'Apakah anda yakin untuk keluar ?', [
+                {text: "Batal"},
+                {text: "OK", onPress: () => actLogout()}
+            ]
+        )
+        
+    }
+
+    const actLogout = async() => {
+        try {
+            await AsyncStorage.clear()
+            props.navigation.replace('LoginScreen')
+        } catch (error) {
+            alert(error)
+        }
     }
 
     return (
@@ -217,6 +238,16 @@ const CustomMyDrawer = props => {
                 labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14 }}
                 onPress={() => screenNavigate('KlienScreen')}
             /> */}
+            <DrawerItem
+                focused={currentScreen == 'TesScreen' ? true : false}
+                activeTintColor="#7F43D6"
+                label="Keluar"
+                icon={({focused}) => (
+                    <Icon name="log-out" size={20} style={{marginLeft: 10, marginRight: -10}} color={focused? '#FF3860' : '#FF3860'} />
+                )}
+                labelStyle={{fontFamily: 'Causten-SemiBold', fontSize: 14,  color: '#FF3860' }}
+                onPress={() => logOut()}
+            />
         </DrawerContentScrollView>
     )
 }

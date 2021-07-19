@@ -1,14 +1,29 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React, { useEffect } from 'react'
-import { StatusBar, StyleSheet, android } from 'react-native'
+import { StatusBar, StyleSheet, android, PermissionsAndroid } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Logo from '../../assets/images/LogoWhite.svg'
 
 const SplashScreen = ({ navigation }) => {
     useEffect(() => {
-        setTimeout(() => {
-            navigation.replace('LoginScreen')
+        setTimeout(async() => {
+            requestPermissions()
+            await asReadData() !== null ? navigation.replace('DashboardScreen') : navigation.replace('LoginScreen')
         }, 2000)
     }, [])
+
+    const requestPermissions = async () => {
+        try {
+          const granted = await PermissionsAndroid.requestMultiple(['android.permission.CAMERA', 'android.permission.WRITE_EXTERNAL_STORAGE']);
+        } catch (err) {
+          console.warn(err);
+        }
+    }
+    
+    const asReadData = async() => {
+        const jsonValue = await AsyncStorage.getItem('USER')
+        return jsonValue != null ? JSON.parse(jsonValue) : null;
+    }
     
     return(
         <LinearGradient 
